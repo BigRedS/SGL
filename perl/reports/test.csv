@@ -1,6 +1,0 @@
-Daily Job Status Report
-30/06/2008 08:48:42
-Shows status of all jobs executed within the last 24 hours.
-Job.Description, Job.Job No, Job.Job Type, Job.Job Status, Job.Job ID, Job.Job Start Time, Job.Job Owner, Log Error.Log Message Date, Log Error.Log Message, Log Error.Log Message Type, Job.Host Name
-Database Pruning Job,1,Prune Database,Finished,3446,29/06/2008 12:00:04,,,,Unknown,JUP-SVR09
-avi testing,2,Generic,Unknown,3447,30/06/2008 08:48:42,caroot,,,Unknown,JUP-SVR09

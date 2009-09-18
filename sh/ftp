@@ -1,6 +1,0 @@
-#! /bin/bash
-
-directory=/mnt/london/ftp
-max_size=8981970944
-
-

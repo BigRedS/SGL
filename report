@@ -1,5 +1,5 @@
 #! /usr/bin/perl
-
+## ArcServe backup report processor
 @locations=(london,scanachrome,glasgow);
 $report_name = "report.csv";
 
