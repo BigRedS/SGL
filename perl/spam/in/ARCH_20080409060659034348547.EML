@@ -1,0 +1,296 @@
+x-sender: <>
+x-receiver: peter.chuno@jupiterdisplay.com
+X-SCL: 7 71.24%
+Received: from mx11-31.sinamail.sina.com.cn ([60.28.2.248] RDNS failed) by jup-svr09.SGL.GROUP with Microsoft SMTPSVC(6.0.3790.3959);
+	 Wed, 9 Apr 2008 07:06:56 +0100
+Received: by mx11-31.sinamail.sina.com.cn (Postfix)
+	id DFC573E8872; Wed,  9 Apr 2008 14:07:02 +0800 (CST)
+Date: Wed,  9 Apr 2008 14:07:02 +0800 (CST)
+From: MAILER-DAEMON@mx11-31.sinamail.sina.com.cn (Mail Delivery System)
+Subject: Undelivered Mail Returned to Sender
+To: peter.chuno@jupiterdisplay.com
+Auto-Submitted: auto-replied
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="C11C33E887F.1207721222/mx11-31.sinamail.sina.com.cn"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20080409060702.DFC573E8872@mx11-31.sinamail.sina.com.cn>
+Return-Path: <>
+X-OriginalArrivalTime: 09 Apr 2008 06:06:57.0406 (UTC) FILETIME=[EAC189E0:01C89A07]
+
+This is a MIME-encapsulated message.
+
+--C11C33E887F.1207721222/mx11-31.sinamail.sina.com.cn
+Content-Description: Notification
+Content-Type: text/plain; charset=us-ascii
+
+This is the mail system at host mx11-31.sinamail.sina.com.cn.
+
+I'm sorry to have to inform you that your message could not
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to postmaster.
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+                   The mail system
+
+<loststone@mail3-114.sinamail.sina.com.cn>: host
+    mail3-114.sinamail.sina.com.cn[202.108.3.114] said: 522 5.2.2 can not find
+    the user path (in reply to end of DATA command)
+
+--C11C33E887F.1207721222/mx11-31.sinamail.sina.com.cn
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; mx11-31.sinamail.sina.com.cn
+X-Postfix-Queue-ID: C11C33E887F
+X-Postfix-Sender: rfc822; peter.chuno@jupiterdisplay.com
+Arrival-Date: Wed,  9 Apr 2008 14:06:59 +0800 (CST)
+
+Final-Recipient: rfc822; loststone@mail3-114.sinamail.sina.com.cn
+Original-Recipient: rfc822;loststone@sina.com.cn
+Action: failed
+Status: 5.2.2
+Remote-MTA: dns; mail3-114.sinamail.sina.com.cn
+Diagnostic-Code: smtp; 522 5.2.2 can not find the user path
+
+--C11C33E887F.1207721222/mx11-31.sinamail.sina.com.cn
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+Content-Transfer-Encoding: 7bit
+
+X-Virus-Scanned: by SinaMailAV
+X-sina-Received-SPF:[neutral]
+X-sina-Originating-IP:[61.17.230.167];[61.17.230.167];[peter.chuno@jupiterdisplay.com];[1]
+Received: from 61.17.230.167 (unknown [61.17.230.167])
+	by mx11-31.sinamail.sina.com.cn (Postfix) with ESMTP id 9C4A13E8854
+	for <loststone@sina.com.cn>; Wed,  9 Apr 2008 14:06:55 +0800 (CST)
+Message-ID: <000501c89a08$01b9acd4$af0d068e@sjjkcs>
+From: =?koi8-r?B?+8vJ0sXOy88g?= <peter.chuno@jupiterdisplay.com>
+To: <loststone@sina.com.cn>
+Subject: =?koi8-r?B?UmU6IE1hZGUtU2VsZiDhy8HExc3J0SDl7OXu+SDyz83Bzs/Xz8og0A==?=
+	=?koi8-r?B?0snHzMHbwcXUINcgzs/X1cAg1snaztgh?=
+Date: Wed, 09 Apr 2008 04:21:45 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0002_01C89A08.01B7ED13"
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.3138
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0002_01C89A08.01B7ED13
+Content-Type: text/plain;
+	charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+
+
+Made-Self =E1=CB=C1=C4=C5=CD=C9=D1 =E5=EC=E5=EE=F9 =
+=F2=CF=CD=C1=CE=CF=D7=CF=CA =D0=D2=C9=C7=CC=C1=DB=C1=C5=D4=20
+  =D7 =F5=DE=C5=C2=CE=CF-=CD=C5=D4=CF=C4=C9=DE=C5=D3=CB=C9=CA =
+=C3=C5=CE=D4=D2 &quot;=E7=CF=CC=C9=C3=D9=CE=CF&quot;!
+
+11-1=FA =C1=D0=D2=C5=CC=D1 =F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=C1 =
+&quot;=ED=C1=CC=C5=CE=D8=CB=C9=C5 =C9=C7=D2=D9 =D7 =C2=CF=CC=D8=DB=D5=C0 =
+=D6=C9=DA=CE=D8&quot;!
+
+=E4=D7=C1 =D3 =D0=CF=CC=CF=D7=C9=CE=CF=CA =C4=CE=D1 =
+=C1=CB=D4=C9=D7=CE=CF=C7=CF =D7=DA=C1=C9=CD=CF=C4=C5=CA=D3=D4=D7=C9=D1 =
+=D3 =F7=C1=DB=C9=CD=C9 =C3=C5=CC=D1=CD=C9 =C9 =
+=D6=C5=CC=C1=CE=C9=D1=CD=C9 =D7 =D3=C6=C5=D2=C5 =C2=C9=DA=CE=C5=D3=C1, =
+=CB=C1=D2=D8=C5=D2=D9 =C9=CC=C9 =CC=C9=DE=CE=CF=CA =D6=C9=DA=CE=C9 =D7 =
+=D0=D2=CF=C3=C5=D3=D3=C5 =D4=D2=C5=CE=C9=CE=C7=CF=D7=CF=CA =
+=D2=C1=C2=CF=D4=D9 =D7 =D5=C4=CF=C2=CE=CF=CD =C4=CC=D1 =F7=C1=D3 =
+=D2=C5=D6=C9=CD=C5, =D3 =D0=CF=CD=CF=DD=D8=C0 =
+=D3=CF=D7=D2=C5=CD=C5=CE=CE=D9=C8 =D4=C5=C8=CE=C9=CB =
+=D0=CF=D7=D9=DB=C5=CE=C9=D1 =F7=C1=DB=C5=CA =
+=DC=C6=C6=C5=CB=D4=C9=D7=CE=CF=D3=D4=C9.
+ =20
+=FA=C1=D0=C9=D3=D8 =D0=CF =D4=C5=CC=C5=C6=CF=CE=D5: =
++7-9=EF=FA-96O-=C28-7=C2
+
+=E3=C5=CC=D8 =F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=D9 - =D0=CF=CE=D1=D4=D8, =
+=DE=D4=CF =D7=D3=A3 =DA=C1=D7=C9=D3=C9=D4 =CF=D4 =CE=C1=D3 =
+=D3=C1=CD=C9=C8, =EB=E1=EB =DC=D4=CF =DA=C1=D7=C9=D3=C9=D4 =CF=D4 =
+=F7=C1=D3, =D3=C6=CF=D2=CD=C9=D2=CF=D7=C1=D4=D8 =D7=C5=D2=D5 =D7 =
+=D3=C5=C2=D1 =C9 =D0=D2=C5=C4=CF=D3=D4=C1=D7=C9=D4=D8 =DE=C5=D4=CB=C9=C5 =
+=CC=CF=C7=C9=DE=C5=D3=CB=C9=C5 =C9=CE=D3=D4=D2=D5=CD=C5=CE=D4=D9, =
+=D0=D2=C9 =D0=CF=CD=CF=DD=C9 =CB=CF=D4=CF=D2=D9=C8 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C9 =D7 =C2=D5=C4=D5=DD=C5=CD =D3=CD=CF=C7=D5=D4 =
+=D3=C1=CD=CF=D3=D4=CF=D1=D4=C5=CC=D8=CE=CF =
+=C9=D3=D3=CC=C5=C4=CF=D7=C1=D4=D8 =C9 =C4=CF=D3=D4=C9=C7=C1=D4=D8 =
+=D3=CF=C2=D3=D4=D7=C5=CE=CE=D9=C5 =C3=C5=CC=C9 =C9 =DA=C1=C4=C1=DE=C9.=20
+
+=F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=C1 =D3=CF=D3=D4=CF=C9=D4 =C9=DA =
+=D4=D2=C5=C8 =DC=D4=C1=D0=CF=D7
+  =20
+=EE=C1 =D0=C5=D2=D7=CF=CD, =CE=C1=DE=C1=CC=D8=CE=CF=CD =DC=D4=C1=D0=C5 =
+=D0=D2=CF=C9=D3=C8=CF=C4=C9=D4 =
+=C6=CF=D2=CD=D5=CC=C9=D2=CF=D7=C1=CE=C9=C5 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C1=CD=C9 =D3=D7=CF=C9=C8 =C3=C5=CC=C5=CA.  =20
+=F7=D4=CF=D2=CF=CA =C9 =CF=D3=CE=CF=D7=CE=CF=CA =DC=D4=C1=D0 =
+=F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=D9 =D3=CF=D3=D4=CF=C9=D4 =C9=DA =
+=D0=D2=CF=C3=C5=D3=D3=CF=D7-=D5=D0=D2=C1=D6=CE=C5=CE=C9=CA, =
+=CB=CF=D4=CF=D2=D9=C5 =D2=C5=C1=CC=C9=DA=D5=C0=D4=D3=D1 =
+=C9=CE=C4=C9=D7=C9=C4=D5=C1=CC=D8=CE=CF, =
+=CD=C9=CB=D2=CF-=C7=D2=D5=D0=D0=C1=C8 =C9=CC=C9 =D7 =C7=D2=D5=D0=D0=C5.  =
+ 
+=EE=C1 =DA=C1=CB=CC=C0=DE=C9=D4=C5=CC=D8=CE=CF=CD, =
+=D4=D2=C5=D4=D8=C5=CD, =DC=D4=C1=D0=C5 =
+=F4=D2=C5=CE=C9=CE=C7-=E9=C9=C7=D2=D9 =CF=C2=CF=C2=DD=C1=C0=D4=D3=D1 =
+=D7=D3=C5 =DA=CE=C1=CE=C9=D1, =D0=CF=CC=D5=DE=C5=CE=CE=D9=C5 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C1=CD=C9 =CE=C1 =CF=D3=CE=CF=D7=CE=CF=CD =
+=DC=D4=C1=D0=C5, =C9 =C1=C4=C1=D0=D4=C9=D2=D5=C0=D4=D3=D1 =CB =
+=D2=C5=C1=CC=D8=CE=CF=CA =D6=C9=DA=CE=C9.=F0=CF=D3=CC=C5 =C9=C7=D2=D9 =
+=CB=C1=D6=C4=D9=CA =D5=DE=C1=D3=D4=CE=C9=CB =C9=CD=C5=C5=D4 =
+=D7=CF=DA=CD=CF=D6=CE=CF=D3=D4=D8 =D0=CF=CC=D5=DE=C9=D4=D8 =
+=C9=CE=C4=C9=D7=C9=C4=D5=C1=CC=D8=CE=D5=C0 =D0=CF=C4=C4=C5=D2=D6=CB=D5 =
+=D7 =D3=D7=CF=C2=CF=C4=CE=CF=CA =
+=CB=CF=CE=D3=D5=CC=D8=D4=C1=C3=C9=CF=CE=CE=CF=CA =C6=CF=D2=CD=C5.
+
+=F5=DE=C1=D3=D4=CE=C9=CB=C9 =D4=D2=C5=CE=C9=CE=C7=C1 =
+=CF=C2=D1=DA=C1=D4=C5=CC=D8=CE=CF =D0=D2=C9=C8=CF=C4=D1=D4 =CB =
+=D0=CF=CE=C9=CD=C1=CE=C9=C0, =CF=D4 =DE=C5=C7=CF =DA=C1=D7=C9=D3=C9=D4 =
+=C9=C8 =CC=C9=DE=CE=C1=D1 =DC=C6=C6=C5=CB=D4=C9=D7=CE=CF=D3=D4=D8 =D7 =
+=C4=CF=D3=D4=C9=D6=C5=CE=C9=D1=C8 =D0=CF=D3=D4=C1=D7=CC=C5=CE=CE=D9=C8 =
+=C3=C5=CC=C5=CA =C9 =D6=C5=CC=C1=CE=C9=CA. =E9 =CD=CF=C7=D5=D4 =
+=D3=C1=CD=CF=D3=D4=CF=D1=D4=C5=CC=D8=CE=CF =D7=CC=C9=D1=D4=D8 =CE=C1 =
+=D7=C1=D6=CE=D9=C5 =D3=CF=C2=D9=D4=C9=D1 =D3=D7=CF=C5=CA =
+=D6=C9=DA=CE=C9.
+=F4=D2=C5=CE=C9=CE=C7 =D7=C5=C4=C5=D4 =E5=EC=E5=EE=E1 =
+=F2=CF=CD=C1=CE=CF=D7=C1, =D4=D2=C5=CE=C5=D2, =
+=CB=CF=D5=DE-=D0=D2=C1=CB=D4=C9=CB =D3 10-=CC=C5=D4=CE=C9=CD =
+=CF=D0=D9=D4=CF=CD
+=F6=C4=C5=CD =D7=C1=D3!
+  =FA=C1=D0=C9=D3=D8 =CE=C1 =D4=D2=C5=CE=C9=CE=C7 =D0=CF =
+=D4=C5=CC=C5=C6=CF=CE=D5:=20
++7-903-96=EF-=C28_7=C2
+=F3=D4=CF=C9=CD=CF=D3=D4=D8 =D5=DE=C1=D3=D4=C9=D1 (=DA=C1 =C4=D7=C1 =D3 =
+=D0=CF=CC=CF=D7=C9=CE=CF=CA =C4=CE=D1) - 12 000 =D2=D5=C2=CC=C5=CA =
+=C2=C5=DA =D3=D4=CF=C9=CD=CF=D3=D4=C9 =D2=C1=DA=CD=C5=DD=C5=CE=C9=D1.
+  =F0=CC=C0=D3 5 000 =D2=D5=C2. - =D0=D2=CF=D6=C9=D7=C1=CE=C9=C5 =C9 =
+=D0=C9=D4=C1=CE=C9=C5 =DA=C1 =C4=D7=C1 =D3 =D0=CF=CC=CF=D7=C9=CE=CF=CA =
+=C4=CE=D1 =D7 =D5=C4=CF=C2=CE=D9=C8 =CE=CF=CD=C5=D2=C1=C8.
+=F7=CF =D7=D2=C5=CD=D1 =CF=D4=C4=D9=C8=C1 =F7=D9 =CD=CF=D6=C5=D4=C5 =
+=D7=CF=D3=D0=CF=CC=D8=DA=CF=D7=C1=D4=D8=D3=D1 =D5=D3=CC=D5=C7=C1=CD=C9 =
+=CD=C1=D3=D3=C1=D6=C9=D3=D4=C1, =D3=C8=CF=C4=C9=D4=D8 =D7 =
+=D3=C1=D5=CE=D5, =D0=CF=C9=C7=D2=C1=D4=D8 =D7 =C2=C9=CC=D8=D1=D2=C4 =C9 =
+=D0=D2=CF=D3=D4=CF =D0=CF=C4=D9=DB=C1=D4=D8 =D3=D7=C5=D6=C9=CD =
+=D7=CF=DA=C4=D5=C8=CF=CD =CE=C1 =D0=D2=CF=C7=D5=CC=CB=C5 =D0=CF =
+=D5=DE=C5=C2=CE=CF=CD=D5 =C3=C5=CE=D4=D2=D5 =
+&quot;=E7=CF=CC=C9=C3=D9=CE=CF&quot;.
+------=_NextPart_000_0002_01C89A08.01B7ED13
+Content-Type: text/html;
+	charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Dkoi8-r">
+<META content=3D"MSHTML 6.00.2900.3199" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<DIV align=3D"center"><B><FONT color=3D"#0000FF" size=3D"4">Made-Self =
+=E1=CB=C1=C4=C5=CD=C9=D1 =E5=EC=E5=EE=F9 =F2=CF=CD=C1=CE=CF=D7=CF=CA =
+=D0=D2=C9=C7=CC=C1=DB=C1=C5=D4 <BR>
+  =D7 =F5=DE=C5=C2=CE=CF-=CD=C5=D4=CF=C4=C9=DE=C5=D3=CB=C9=CA =
+=C3=C5=CE=D4=D2 &quot;=E7=CF=CC=C9=C3=D9=CE=CF&quot;!</FONT></B></DIV>
+<P align=3D"center"><B>11-1=FA =C1=D0=D2=C5=CC=D1 =
+=F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=C1 &quot;=ED=C1=CC=C5=CE=D8=CB=C9=C5 =
+=C9=C7=D2=D9 =D7 =C2=CF=CC=D8=DB=D5=C0 =D6=C9=DA=CE=D8&quot;!</B><BR>
+</P>
+<P>=E4=D7=C1 =D3 =D0=CF=CC=CF=D7=C9=CE=CF=CA =C4=CE=D1 =
+=C1=CB=D4=C9=D7=CE=CF=C7=CF =D7=DA=C1=C9=CD=CF=C4=C5=CA=D3=D4=D7=C9=D1 =
+=D3 =F7=C1=DB=C9=CD=C9 =C3=C5=CC=D1=CD=C9 =C9 =
+=D6=C5=CC=C1=CE=C9=D1=CD=C9 =D7 =D3=C6=C5=D2=C5 =C2=C9=DA=CE=C5=D3=C1, =
+=CB=C1=D2=D8=C5=D2=D9 =C9=CC=C9 =CC=C9=DE=CE=CF=CA =D6=C9=DA=CE=C9 =D7 =
+=D0=D2=CF=C3=C5=D3=D3=C5 =D4=D2=C5=CE=C9=CE=C7=CF=D7=CF=CA =
+=D2=C1=C2=CF=D4=D9 =D7 =D5=C4=CF=C2=CE=CF=CD =C4=CC=D1 =F7=C1=D3 =
+=D2=C5=D6=C9=CD=C5, =D3 =D0=CF=CD=CF=DD=D8=C0 =
+=D3=CF=D7=D2=C5=CD=C5=CE=CE=D9=C8 =D4=C5=C8=CE=C9=CB =
+=D0=CF=D7=D9=DB=C5=CE=C9=D1 =F7=C1=DB=C5=CA =
+=DC=C6=C6=C5=CB=D4=C9=D7=CE=CF=D3=D4=C9.<BR>
+  <B>=FA=C1=D0=C9=D3=D8 =D0=CF =D4=C5=CC=C5=C6=CF=CE=D5: =
++7-9=EF=FA-96O-=C28-7=C2</B></P>
+<P><B>=E3=C5=CC=D8 =F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=D9</B> - =
+=D0=CF=CE=D1=D4=D8, =DE=D4=CF =D7=D3=A3 =DA=C1=D7=C9=D3=C9=D4 =CF=D4 =
+=CE=C1=D3 =D3=C1=CD=C9=C8, =EB=E1=EB =DC=D4=CF =DA=C1=D7=C9=D3=C9=D4 =
+=CF=D4 =F7=C1=D3, =D3=C6=CF=D2=CD=C9=D2=CF=D7=C1=D4=D8 =D7=C5=D2=D5 =D7 =
+=D3=C5=C2=D1 =C9 =D0=D2=C5=C4=CF=D3=D4=C1=D7=C9=D4=D8 =DE=C5=D4=CB=C9=C5 =
+=CC=CF=C7=C9=DE=C5=D3=CB=C9=C5 =C9=CE=D3=D4=D2=D5=CD=C5=CE=D4=D9, =
+=D0=D2=C9 =D0=CF=CD=CF=DD=C9 =CB=CF=D4=CF=D2=D9=C8 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C9 =D7 =C2=D5=C4=D5=DD=C5=CD =D3=CD=CF=C7=D5=D4 =
+=D3=C1=CD=CF=D3=D4=CF=D1=D4=C5=CC=D8=CE=CF =
+=C9=D3=D3=CC=C5=C4=CF=D7=C1=D4=D8 =C9 =C4=CF=D3=D4=C9=C7=C1=D4=D8 =
+=D3=CF=C2=D3=D4=D7=C5=CE=CE=D9=C5 =C3=C5=CC=C9 =C9 =DA=C1=C4=C1=DE=C9. =
+</P>
+<P><B><I>=F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=C1 =D3=CF=D3=D4=CF=C9=D4 =C9=DA =
+=D4=D2=C5=C8 =DC=D4=C1=D0=CF=D7</I></B></P>
+<UL>
+  <LI> <B>=EE=C1 =D0=C5=D2=D7=CF=CD, =CE=C1=DE=C1=CC=D8=CE=CF=CD =
+=DC=D4=C1=D0=C5</B> =D0=D2=CF=C9=D3=C8=CF=C4=C9=D4 =
+=C6=CF=D2=CD=D5=CC=C9=D2=CF=D7=C1=CE=C9=C5 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C1=CD=C9 =D3=D7=CF=C9=C8 =C3=C5=CC=C5=CA.</LI>
+  <LI> <B>=F7=D4=CF=D2=CF=CA =C9 =CF=D3=CE=CF=D7=CE=CF=CA =
+=DC=D4=C1=D0</B> =F4=D2=C5=CE=C9=CE=C7-=E9=C7=D2=D9 =
+=D3=CF=D3=D4=CF=C9=D4 =C9=DA =
+=D0=D2=CF=C3=C5=D3=D3=CF=D7-=D5=D0=D2=C1=D6=CE=C5=CE=C9=CA, =
+=CB=CF=D4=CF=D2=D9=C5 =D2=C5=C1=CC=C9=DA=D5=C0=D4=D3=D1 =
+=C9=CE=C4=C9=D7=C9=C4=D5=C1=CC=D8=CE=CF, =
+=CD=C9=CB=D2=CF-=C7=D2=D5=D0=D0=C1=C8 =C9=CC=C9 =D7 =
+=C7=D2=D5=D0=D0=C5.</LI>
+  <LI> <B>=EE=C1 =DA=C1=CB=CC=C0=DE=C9=D4=C5=CC=D8=CE=CF=CD, =
+=D4=D2=C5=D4=D8=C5=CD</B>, =DC=D4=C1=D0=C5 =
+=F4=D2=C5=CE=C9=CE=C7-=E9=C9=C7=D2=D9 =CF=C2=CF=C2=DD=C1=C0=D4=D3=D1 =
+=D7=D3=C5 =DA=CE=C1=CE=C9=D1, =D0=CF=CC=D5=DE=C5=CE=CE=D9=C5 =
+=D5=DE=C1=D3=D4=CE=C9=CB=C1=CD=C9 =CE=C1 =CF=D3=CE=CF=D7=CE=CF=CD =
+=DC=D4=C1=D0=C5, =C9 =C1=C4=C1=D0=D4=C9=D2=D5=C0=D4=D3=D1 =CB =
+=D2=C5=C1=CC=D8=CE=CF=CA =D6=C9=DA=CE=C9.</LI>
+</UL>
+<P>=F0=CF=D3=CC=C5 =C9=C7=D2=D9 =CB=C1=D6=C4=D9=CA =
+=D5=DE=C1=D3=D4=CE=C9=CB =C9=CD=C5=C5=D4 =
+=D7=CF=DA=CD=CF=D6=CE=CF=D3=D4=D8 =D0=CF=CC=D5=DE=C9=D4=D8 =
+=C9=CE=C4=C9=D7=C9=C4=D5=C1=CC=D8=CE=D5=C0 =D0=CF=C4=C4=C5=D2=D6=CB=D5 =
+=D7 =D3=D7=CF=C2=CF=C4=CE=CF=CA =
+=CB=CF=CE=D3=D5=CC=D8=D4=C1=C3=C9=CF=CE=CE=CF=CA =C6=CF=D2=CD=C5.</P>
+<P><B>=F5=DE=C1=D3=D4=CE=C9=CB=C9 =D4=D2=C5=CE=C9=CE=C7=C1</B> =
+=CF=C2=D1=DA=C1=D4=C5=CC=D8=CE=CF =D0=D2=C9=C8=CF=C4=D1=D4 =CB =
+=D0=CF=CE=C9=CD=C1=CE=C9=C0, =CF=D4 =DE=C5=C7=CF =DA=C1=D7=C9=D3=C9=D4 =
+=C9=C8 =CC=C9=DE=CE=C1=D1 =DC=C6=C6=C5=CB=D4=C9=D7=CE=CF=D3=D4=D8 =D7 =
+=C4=CF=D3=D4=C9=D6=C5=CE=C9=D1=C8 =D0=CF=D3=D4=C1=D7=CC=C5=CE=CE=D9=C8 =
+=C3=C5=CC=C5=CA =C9 =D6=C5=CC=C1=CE=C9=CA. =E9 =CD=CF=C7=D5=D4 =
+=D3=C1=CD=CF=D3=D4=CF=D1=D4=C5=CC=D8=CE=CF =D7=CC=C9=D1=D4=D8 =CE=C1 =
+=D7=C1=D6=CE=D9=C5 =D3=CF=C2=D9=D4=C9=D1 =D3=D7=CF=C5=CA =
+=D6=C9=DA=CE=C9.</P>
+<P>=F4=D2=C5=CE=C9=CE=C7 =D7=C5=C4=C5=D4 =E5=EC=E5=EE=E1 =
+=F2=CF=CD=C1=CE=CF=D7=C1, =D4=D2=C5=CE=C5=D2, =
+=CB=CF=D5=DE-=D0=D2=C1=CB=D4=C9=CB =D3 10-=CC=C5=D4=CE=C9=CD =
+=CF=D0=D9=D4=CF=CD</P>
+<P>=F6=C4=C5=CD =D7=C1=D3!<BR>
+  =FA=C1=D0=C9=D3=D8 =CE=C1 =D4=D2=C5=CE=C9=CE=C7 =D0=CF =
+=D4=C5=CC=C5=C6=CF=CE=D5: <B>+7-903-96=EF-=C28_7=C2</B></P>
+<P>=F3=D4=CF=C9=CD=CF=D3=D4=D8 =D5=DE=C1=D3=D4=C9=D1 (=DA=C1 =C4=D7=C1 =
+=D3 =D0=CF=CC=CF=D7=C9=CE=CF=CA =C4=CE=D1) - 12 000 =D2=D5=C2=CC=C5=CA =
+=C2=C5=DA =D3=D4=CF=C9=CD=CF=D3=D4=C9 =
+=D2=C1=DA=CD=C5=DD=C5=CE=C9=D1.<BR>
+  =F0=CC=C0=D3 5 000 =D2=D5=C2. - =D0=D2=CF=D6=C9=D7=C1=CE=C9=C5 =C9 =
+=D0=C9=D4=C1=CE=C9=C5 =DA=C1 =C4=D7=C1 =D3 =D0=CF=CC=CF=D7=C9=CE=CF=CA =
+=C4=CE=D1 =D7 =D5=C4=CF=C2=CE=D9=C8 =CE=CF=CD=C5=D2=C1=C8.</P>
+<P>=F7=CF =D7=D2=C5=CD=D1 =CF=D4=C4=D9=C8=C1 =F7=D9 =CD=CF=D6=C5=D4=C5 =
+=D7=CF=D3=D0=CF=CC=D8=DA=CF=D7=C1=D4=D8=D3=D1 =D5=D3=CC=D5=C7=C1=CD=C9 =
+=CD=C1=D3=D3=C1=D6=C9=D3=D4=C1, =D3=C8=CF=C4=C9=D4=D8 =D7 =
+=D3=C1=D5=CE=D5, =D0=CF=C9=C7=D2=C1=D4=D8 =D7 =C2=C9=CC=D8=D1=D2=C4 =C9 =
+=D0=D2=CF=D3=D4=CF =D0=CF=C4=D9=DB=C1=D4=D8 =D3=D7=C5=D6=C9=CD =
+=D7=CF=DA=C4=D5=C8=CF=CD =CE=C1 =D0=D2=CF=C7=D5=CC=CB=C5 =D0=CF =
+=D5=DE=C5=C2=CE=CF=CD=D5 =C3=C5=CE=D4=D2=D5 =
+&quot;=E7=CF=CC=C9=C3=D9=CE=CF&quot;.</P></BODY></HTML>
+------=_NextPart_000_0002_01C89A08.01B7ED13--
+
+
+
+--C11C33E887F.1207721222/mx11-31.sinamail.sina.com.cn--

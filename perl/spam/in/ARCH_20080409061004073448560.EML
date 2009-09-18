@@ -1,0 +1,71 @@
+x-sender: <>
+x-receiver: peter.chuno@jupiterdisplay.com
+X-SCL: 7 64.58%
+Received: from mail.sovietsport.ru ([84.47.176.76]) by jup-svr09.SGL.GROUP with Microsoft SMTPSVC(6.0.3790.3959);
+	 Wed, 9 Apr 2008 07:10:04 +0100
+Received: from localhost.naukanet.ru ([127.0.0.1] helo=localhost)
+	by mail.sovietsport.ru with esmtp (Exim 4.50)
+	id 1JjTSz-0005oN-7a
+	for peter.chuno@jupiterdisplay.com; Wed, 09 Apr 2008 10:07:29 +0400
+Received: from mail.sovietsport.ru ([127.0.0.1])
+	by localhost (mail.sovietsport.ru [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 19658-13 for <peter.chuno@jupiterdisplay.com>;
+	Wed, 9 Apr 2008 10:07:29 +0400 (MSD)
+Received: from Debian-exim by mail.sovietsport.ru with local (Exim 4.50)
+	id 1JjTSz-0005oG-3z
+	for peter.chuno@jupiterdisplay.com; Wed, 09 Apr 2008 10:07:29 +0400
+X-Failed-Recipients: na@sovietsport.ru
+Auto-Submitted: auto-generated
+From: Mail Delivery System <Mailer-Daemon@sovietsport.ru>
+To: peter.chuno@jupiterdisplay.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1JjTSz-0005oG-3z@mail.sovietsport.ru>
+Date: Wed, 09 Apr 2008 10:07:29 +0400
+X-Virus-Scanned: by amavisd-new at sovietsport.ru
+Return-Path: <>
+X-OriginalArrivalTime: 09 Apr 2008 06:10:04.0609 (UTC) FILETIME=[5A567310:01C89A08]
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  na@sovietsport.ru
+    SMTP error from remote mailer after end of data:
+    host localhost [127.0.0.1]: 550 5.1.0 unknown user
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <peter.chuno@jupiterdisplay.com>
+Received: from 158-244-179-213.kv.ukrtel.net ([213.179.244.158])
+	by mail.sovietsport.ru with esmtp (Exim 4.50)
+	id 1JjTSy-0005mX-OJ
+	for na@sovietsport.ru; Wed, 09 Apr 2008 10:07:28 +0400
+Message-ID: <000901c89a08$06a900a0$53881aaa@eciid>
+From: =?koi8-r?B?68/O09TBztTJzg==?= <peter.chuno@jupiterdisplay.com>
+To: <na@sovietsport.ru>
+Subject: =?koi8-r?B?7c/Ty8/X08vJyiDL0sXNzNggydogx8zVwsnO2SDXxcvP1w==?=
+Date: Wed, 09 Apr 2008 04:22:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="koi8-r"
+Content-Transfer-Encoding: 8bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.3138
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+ Подарочные книги   Тел.(495)648-91-49
+                   факс.(495)648-91-42
+
+ -Московский кремль из глубины веков
+ -Оружейная палата Московского кремля
+ -Путь чая
+ -Москва Златоглавая
+ -Библия
+ -Русский парадный обед
+ -Петр Великий
+ -Императорский фарфоровый завод
+
+
+

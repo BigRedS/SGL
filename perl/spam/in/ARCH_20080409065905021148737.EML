@@ -1,0 +1,137 @@
+x-sender: <>
+x-receiver: peter.chuno@jupiterdisplay.com
+X-SCL: 7 65.16%
+Received: from ik59098.ikexpress.com ([213.246.59.98]) by jup-svr09.SGL.GROUP with Microsoft SMTPSVC(6.0.3790.3959);
+	 Wed, 9 Apr 2008 07:59:04 +0100
+Received: by ik59098.ikexpress.com (Postfix)
+	id 5202371C1B6; Wed,  9 Apr 2008 08:58:37 +0200 (CEST)
+Date: Wed,  9 Apr 2008 08:58:37 +0200 (CEST)
+From: MAILER-DAEMON@securitest.org (Mail Delivery System)
+Subject: Undelivered Mail Returned to Sender
+To: peter.chuno@jupiterdisplay.com
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="7219571C7CA.1207724317/ik59098.ikexpress.com"
+Message-Id: <20080409065837.5202371C1B6@ik59098.ikexpress.com>
+Return-Path: <>
+X-OriginalArrivalTime: 09 Apr 2008 06:59:04.0539 (UTC) FILETIME=[32AC2AB0:01C89A0F]
+
+This is a MIME-encapsulated message.
+
+--7219571C7CA.1207724317/ik59098.ikexpress.com
+Content-Description: Notification
+Content-Type: text/plain
+
+This is the Postfix program at host ik59098.ikexpress.com.
+
+I'm sorry to have to inform you that your message could not be
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to <postmaster>
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+			The Postfix program
+
+<00612@securitest.org>: host 127.0.0.1[127.0.0.1] said: 550 5.7.1 Message
+    content rejected, UBE, id=01972-10 (in reply to end of DATA command)
+
+--7219571C7CA.1207724317/ik59098.ikexpress.com
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; ik59098.ikexpress.com
+X-Postfix-Queue-ID: 7219571C7CA
+X-Postfix-Sender: rfc822; peter.chuno@jupiterdisplay.com
+Arrival-Date: Wed,  9 Apr 2008 08:54:47 +0200 (CEST)
+
+Final-Recipient: rfc822; 00612@securitest.org
+Action: failed
+Status: 5.0.0
+Diagnostic-Code: X-Postfix; host 127.0.0.1[127.0.0.1] said: 550 5.7.1 Message
+    content rejected, UBE, id=01972-10 (in reply to end of DATA command)
+
+--7219571C7CA.1207724317/ik59098.ikexpress.com
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+
+Received: from 82.142.161.18 (unknown [82.142.161.18])
+	by ik59098.ikexpress.com (Postfix) with ESMTP id 7219571C7CA
+	for <00612@securitest.org>; Wed,  9 Apr 2008 08:54:47 +0200 (CEST)
+Message-ID: <000801c89a0e$04cc1a91$fda21bb4@dbfvjd>
+From: "esteban davidovi" <peter.chuno@jupiterdisplay.com>
+To: <00612@securitest.org>
+Subject: =?koi8-r?B?8sXHydPU0sHDydEgwNLJxMnexdPLycggzMnDIMkgyc7EydfJxNXBzA==?=
+	=?koi8-r?B?2M7ZyCDQ0sXE0NLJzsnNwdTFzMXKIQ==?=
+Date: Wed, 09 Apr 2008 05:08:15 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0005_01C89A0E.04CBF400"
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.3138
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0005_01C89A0E.04CBF400
+Content-Type: text/plain;
+	charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+
+      =F2=C5=C7=C9=D3=D4=D2=C1=C3=C9=D1 =
+=CE=C5=CB=CF=CD=CD=C5=D2=DE=C5=D3=CB=C9=C8 =
+=CF=D2=C7=C1=CE=C9=DA=C1=C3=C9=CA,=20
+=D7=CE=C5=C2=C0=C4=D6=C5=D4=CE=D9=C5 =C6=CF=CE=C4=D9, =
+=D2=C5=C7=C9=D3=D4=D2=C1=C3=C9=D1 =EF=EF=EF, =FA=E1=EF, =EF=E1=EF, =
+=E9=F0, =D7=CE=C5=D3=C5=CE=C9=C5 =C9=DA=CD=C5=CE=C5=CE=C9=CA.
+=F4=C5=CC. [ 495 ] 6 29961 1
+=F4=C5=CC. [ 499 ] 4 08968 3
+=F0=D2=C9=CE=CF=D3=C9=CD =D3=D7=CF=C9 =C9=DA=D7=C9=CE=C5=CE=C9=D1, =
+=C5=D3=CC=C9 =C4=C1=CE=CE=C1=D1 =D2=C1=D3=D3=D9=CC=CB=C1 =F7=C1=CD =
+=CE=C5 =CE=D5=D6=CE=C1.
+  =20
+------=_NextPart_000_0005_01C89A0E.04CBF400
+Content-Type: text/html;
+	charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Dkoi8-r">
+<META content=3D"MSHTML 6.00.2900.3199" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<TABLE width=3D"800" border=3D"0" cellspacing=3D"0" cellpadding=3D"5" =
+align=3D"center">
+  <TR>
+    <TD>
+
+
+<P align=3D"center" style=3D"font-family:arial black; font-size:18px; =
+color:#990000 ">=F2=C5=C7=C9=D3=D4=D2=C1=C3=C9=D1 =
+=CE=C5=CB=CF=CD=CD=C5=D2=DE=C5=D3=CB=C9=C8 =
+=CF=D2=C7=C1=CE=C9=DA=C1=C3=C9=CA, <BR>
+=D7=CE=C5=C2=C0=C4=D6=C5=D4=CE=D9=C5 =C6=CF=CE=C4=D9, =
+=D2=C5=C7=C9=D3=D4=D2=C1=C3=C9=D1 =EF=EF=EF, =FA=E1=EF, =EF=E1=EF, =
+=E9=F0, =D7=CE=C5=D3=C5=CE=C9=C5 =C9=DA=CD=C5=CE=C5=CE=C9=CA.</P>
+
+
+<P align=3D"center"><STRONG>=F4=C5=CC. [ 495 ] 6 29961 1<BR>
+
+=F4=C5=CC. [ 499 ] 4 08968 3
+
+</STRONG></P>
+<P align=3D"center"><STRONG>=F0=D2=C9=CE=CF=D3=C9=CD =D3=D7=CF=C9 =
+=C9=DA=D7=C9=CE=C5=CE=C9=D1, =C5=D3=CC=C9 =C4=C1=CE=CE=C1=D1 =
+=D2=C1=D3=D3=D9=CC=CB=C1 =F7=C1=CD =CE=C5 =CE=D5=D6=CE=C1.</STRONG></P>
+</TD>
+  </TR>
+</TABLE></BODY></HTML>
+------=_NextPart_000_0005_01C89A0E.04CBF400--
+
+
+
+--7219571C7CA.1207724317/ik59098.ikexpress.com--

@@ -1,0 +1,18 @@
+#! /usr/bin/perl
+
+$time_interval_hrs=12;
+
+$log_file=$ARGV[0];
+$timestamp_now=time();
+$timestamp_start=$timestamp_now-($time_interval_hrs * 3600);
+
+open (LOGFILE, $log_file);
+	foreach $line (<LOGFILE>) {
+		$timestamp = (split(/\s/, $line))[6];
+		if ($timestamp > $timestamp_start){
+			print $line;
+		}
+	}	
+close (LOGFILE);
+print "\n";
+

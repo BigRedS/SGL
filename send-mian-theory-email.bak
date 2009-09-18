@@ -1,0 +1,42 @@
+#! /usr/bin/perl
+
+$today=(localtime)[3];
+$this_year=(localtime)[5];
+$this_year+=1900;
+
+
+if ($today > 16 || %year > 2008){
+	print "Cancel mian's email reminder";
+	exit 0;
+}
+
+
+$num_days=16-$today;
+
+$days="days";
+if($num_days == 1){
+	$days = "day";
+}
+
+$sendmail	="/usr/sbin/sendmail -t";
+
+$email_address	="avi.greenbury\@servicegraphics.co.uk";
+
+$email_to	="To: $email_address\n";
+$email_subject	="Subject: Your theory test in ".$num_days." days\n";
+$email_reply_to	="Reply-to: avi.greenbury\@servicegraphics.co.uk\n";
+$email_body	="Good Morning! \n\n\n\t This is a handy reminder that your theory test is in ".$num_days." ".$days."\n\n\t Don't forget to go.\n";
+$email_content	="Content-type: text/plain\n\n";
+
+if($num_days < 1){
+	$body="Good Morning! \n\n\n\t This is a handy reminder that your theory test is now. \n\n\t If you're reading this before you go to it, you've missed it again. \n";
+}
+
+open(SENDMAIL, "|$sendmail") || die ("cannot open pipe to $sendmail");
+	print SENDMAIL $email_reply_to;
+#	print SENDMAIL "From: avi.greenbury\@servicegraphics.co.uk\n";
+	print SENDMAIL $email_subject;
+	print SENDMAIL $email_to;
+	print SENDMAIL $email_content;
+	print SENDMAIL $email_body;
+close (SENDMAIL)

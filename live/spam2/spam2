@@ -1,0 +1,441 @@
+#! /usr/bin/perl
+
+# This script is written for what is hopefully quite a rare situation. It requires an MS
+# Exchange-based email system, and a *nix box which might as well be used as a mail
+# gateway, but isn't. It's getting closer to not requiring a *nix OS, but it still needs
+# grep and sendmail. If you can implement grep and sendmail under Windows (Cygwin etc.)
+# there's no reason why this wont run under Perl in Windows. Directory paths are
+# concatenated, so presuming you get all the slashes the right (or wrong) way round in
+# the paths, it should work.
+
+# Basically, this reads the whitelist file, and then scans the In directory for anything
+# that contains a text string that matches. The In directory should be MS Exchange's UCE
+# directory. This contains a load of plain text files of the full contents of all mail
+# that Exchange (or, rather, Exchange's IMF) considers spam, with .EML extensions.
+#
+# If the current file doesn't match, it moves it to a directory under the Bad directory,
+# named with today's date in YYMMDD format, and renames the file itself to a sanitised
+# version of the subject line.
+#
+# If it does, the headers are stripped and a new email composed with the headers dictated
+# by the whitelist file. The email is then moved into a directory under the Good directory
+# again named with today's date in YYMMDD format, and the file name appended with the
+# matching string.
+#
+# The scanning is actually run twice, given the (generally) incredibly low ratio of false
+# positives to true postivies. First, in the interests of speed, the file searched for the
+# presence of any of the whitelist items with a single parse. If there isn't a match, the
+# next file is searched. If there is a match, the file is parsed again to ascertain exactly
+# which one matched, and then the appropriate action is take. 
+# The Whitelist allows for two space-separated terms at the beginning of the line. If only 
+# one is provided, each parse is with this file. If two are provided, the second parse is
+# looking only for the second term.
+#
+# The format of the whitelist is as follows:
+# <first search term> <second search term>%<subject>%<to addresses>%<cc addresses>
+# Note that the search terms are space-separated (so must not contain spaces themselves) and
+# the rest are percent-symbol separated. The address lists are passed to sendmail.
+
+
+use File::Copy;
+
+## Get timestamp when we begin:
+$begin = time();
+
+my $location=$ARGV[0];
+
+##Get today's date
+my $today_cmd = "date +%y%m%d";
+my $today=qx/$today_cmd/;
+chomp $today;
+
+
+## User-editable configuration Begins Here ! ##
+
+
+  #######################################################
+ ## ALL directory paths _MUST_ feature a trailing slash ##
+  #######################################################
+
+# Some output settings:
+	# Values are boolean - 0 = don't do it, !0 = do it
+	# Defaults are erratic, as is behavior of $var!=[012].
+	my $send_report = 0;			# Send email after scan
+	my $write_log = 1;			# Write to general log
+	my $write_daily_log = 1;		# Write to daily log
+	my $print_whitelist = 0;		# Echo to stdout what script understands the whitelist to be
+	my $print_test_result = 0;		# Echo to stout the result of each check
+	my $print_every_good_email = 0;
+	my $print_every_checked = 0;
+	my $print_whitelist_two_matches = 0;
+	my $print_details = 0;
+	
+	# 0 = move files (usual behaviour)
+	# 1 = copy files rather than moving them
+	# 2 = neither
+	my $copy_rather_than_move = 0;
+	
+	# Whether to forward good emails as per the whitelist.
+	# Doesn't affect whitelist lookups, only mail sending.
+	my $send_email = 1;
+## Paths:
+
+	my $whitelist_path = "/var/www/spam/white/whitelist";			
+	my $log_file = "/home/avi/bin/spamlog";
+
+	my $in_dir = "/mnt/".$location."/in/";
+	my $bad_dir = "/var/badmail/".$location."/".$today."/";
+	my $good_dir = "/var/goodmail/".$location."/".$today."/";
+
+
+
+#	my $in_dir = "/home/avi/bin/spam2/test/";
+#	my $bad_dir = $in_dir;
+#	my $good_dir = $in_dir;
+
+
+	my $daily_log_file = $good_dir."spamlog";
+#	print "\n".$daily_log_file."\n";
+
+## Mail-related settings:
+	my $problem_address = 'avi.greenbury@servicegraphics.co.uk';
+	my $sendmail = "/usr/sbin/sendmail -t";
+	my $reply_to = 'avi.greenbury@servicegraphics.co.uk';
+	my $header = "Following is an email plucked from the spam filter\n\n\t\tBEGIN FORWARDED MESSAGE:\n\n";
+	my $signature = "\n\n\t\tEND FORWARDED MESSAGE\nAny problems, let ".$problem_address." know";
+	my $headers_notice = "\n\n\t\tComplete headers follow. Please include this in any error reporting\n\n";
+	my $from_name = "spambot";
+
+	my $reporting_to_addresses = 'avi.greenbury@servicegraphics.co.uk';
+	my $reporting_from_name = "spambot";
+	
+## Count zero-ing:
+	my $all_count = 0;
+	my $bad_count = 0;
+	my $good_count = 0;
+	my @good_list=();
+	my $winner = "0";
+	my $cc_address = "";
+## BEGIN THINKING! ##
+
+## Get starttime for logging:
+
+$start_time = localtime();
+
+## Check we have everything:
+
+	# Check for, and create if neccesary, today's directories:
+	## If they already exist, but are not writeable, we will not be able to create them, so will fail.
+	unless ( (-d $bad_dir) && (-w $bad_dir)){
+		mkdir $bad_dir || die ("Error creating Bad directory at $bad_dir");
+	}
+	unless ( (-d $good_dir) && (-w $bad_dir)){
+		mkdir $good_dir || die ("Error creating Good directory at $good_dir");
+	}	
+
+## Read Whitelist
+# Whitelist is read into @whitelist_file, then the first column of each line (i.e. the actual
+# whitelist items) are read into @whitelist
+
+	open (WHITELIST, $whitelist_path) || die ("Error opening Whitelist at $whitelist_path");
+		my @whitelist_file = <WHITELIST>;
+	close (WHITELIST);
+	my @whitelist=();
+	foreach (@whitelist_file){
+		unless ($_ =~ m/^#/){
+			@white = split /%/, $_;
+			if ($white[0] =~ / /){
+				@white_again = split (/ /, $white[0]);
+				$white[0] = $white_again[0];
+			}
+			push (@whitelist, $white[0]);
+		}
+	}
+
+	## Calculate the size of the whitelist, and put together the beginning of a command:
+	my $whitelist_size = @whitelist;
+
+	if ($whitelist_size == 1){
+		$cmd = "grep -i \"".$whitelist[0]."\"";
+		print "Whoop";
+	}else{
+		$cmd = "grep -i \"";
+		foreach (@whitelist){
+			$count++;
+			$cmd.=$_;
+			if ($count < $whitelist_size){
+				$cmd.="\\|";
+			}
+		}
+		$cmd.="\" ";
+	}
+	$count = 0;
+
+	
+#	print "cmd = \t", $cmd ;
+## read in dir
+	opendir (IN, $in_dir) || die ("Error opening In directory at $in_dir");
+		my @emails = readdir(IN);
+	closedir(IN);
+
+	my $number_of_emails = @emails;
+#	print $number_of_emails, "\n";
+	
+# Create second whitelist, for use in rescanning 'good' mail:
+#print "creating whitelist two\n";
+	my @whitelist_two=();
+ 	foreach (@whitelist_file){
+		unless ($_ =~ m/^#/){
+			@line = split(/%/, $_);
+			if ($line[0] =~ m/ /){
+				@line_array = split(/ /, $line[0]);
+				#print $line_array[1],"\n";
+				push (@whitelist_two, $line_array[1]);
+			}else{
+				push (@whitelist_two, $line[0]);
+				#print $line[0], "\n";
+			}
+		}
+	}
+
+
+
+
+if ($print_whitelist == 1){
+	print "\tWhitelist 1\n";
+	foreach (@whitelist){
+		print $_, "\n";
+	}
+	print "\tWhitelist 2\n";
+	foreach (@whitelist_two){
+		print $_, "\n";
+	}
+}
+
+
+## Start Processing Files:
+# Each file is grepped for *any* of the whitelist. If there is no match it is treated as 'bad'. 
+# If there is a match, it is then regrepped to find *which* whitelist item matched. The details
+# for that whitelist item are then extracted from the whitelist, and the email is sent.
+#
+# By this point in the program, the only I/O should be on the emails themselves. Everything else 
+# (whitelist, directory listings, commands) should be in memory.
+
+	foreach (@emails) {
+		$all_count++;
+		$email = $_;
+		$email_path = $in_dir.$email;
+
+	#	print "Checking ".$_."...\t";
+		if ($email =~ m/EML$/){		#Only bother processing if it ends with EML
+			$email_path = $in_dir.$email;
+			$cmd2=$cmd.$email_path;
+			$cmd2.=" | wc -l";
+#			print $cmd2;
+
+			if ($print_every_checked == 1){
+				print "Checking ", $email_path;
+			}
+			
+			if ($whitelist_size < 2){	# If there's only one line in the whitelist,
+			#	print "1\n";		# we don't need to build the command.
+			}else{
+				$match_count = qx/$cmd2/;
+#
+## Initial Checking's been done. Herein we process the email according to what the checking found
+#
+				if ( $match_count > 0){
+					if ($print_test_result == 1){
+						print "good";
+					}
+						
+					$good_count++;
+					push (@good_list, $_);
+					$winner = "0";
+
+					# Open the email and see if it contains the words we're looking for.
+					# If it does, the first match is called $winner.
+					open (GOODMAIL, $email_path) || die ("Error opening $email_path for second scan");
+						if ($print_every_good_email == 1){
+							print $email_path, "\n";
+						}
+						while ($line = <GOODMAIL>){
+							$count = 0;
+							foreach (@whitelist_two){
+								if ($line =~ /$_/i){
+									$winner = $_;
+									$details=$whitelist_file[$count];
+									if ($print_whitelist_two_matches == 1){
+										print "Whitelist two: ", $winner, "\n";
+									}
+									if ($print_details == 1){
+										print "Details: \n\t", $details, "\n";
+									}
+
+								}
+								$count++;
+							}
+						}
+					close (GOODMAIL);
+					
+					
+					@detail_array=split(/%/, $details);
+					$subject = $detail_array[1];
+					$to_address = $detail_array[2];
+					$cc_address = $detail_array[3];
+					open (EMAIL, $email_path);
+						@full_email = <EMAIL>;
+					close (EMAIL);
+					
+
+						$email_size=@full_email;
+					$dividing_line = 0;
+					for ($i=0, $i<$email_size, $i++){
+						if ($full_email[$i] =~ m/^X-Original/){
+							$dividing_line=$i;
+							last;
+						}else{
+							$dividing_line=0;
+						}
+					}
+					
+					unless ($send_email == 0){
+						open (MAIL, "|$sendmail") || die "Couldn't open pipe to $sendmail";
+							print MAIL "From: ", $from_name,"\n";
+							print MAIL "Subject: ", $subject,"\n";
+							print MAIL "To: ", $to_address, "\n";
+							print MAIL $header;
+							$print = 0;
+							foreach (@full_email){
+								if ($print == 1){
+									chomp $_;
+									print MAIL $_;
+								}
+								if ($_ =~ /X-Original/){
+									$print = 1;
+								}
+							}
+							print MAIL $signature;
+							print MAIL $headers_notice;
+							foreach (@full_email){
+								if ($print == 0){
+									chomp $_;
+									print MAIL $_;
+								}
+								if ($_ =~/X-Original/){
+									$print = 1;
+								}
+							}
+
+							print "\n\nmail id: $email\n";
+						close (MAIL);
+					}
+					if ($copy_rather_than_move == 1){
+						copy ($email_path, $good_dir.$winner.".".$email);
+					}elsif ($copy_rather_than_move == 2){
+						sleep 0;
+					}else{
+						move ($email_path, $good_dir.$winner.".".$email);
+					}
+				}else{
+					if ($print_test_result == 1){
+						print "bad";
+					}
+					$bad_count++;
+					open (BADMAIL, $email_path);
+						while ($line = <BADMAIL>){
+							if ($line =~ m/Subject:/i){
+								$subject_line = $line;
+							}
+						}
+						$subject_line =~ s/subject://i;	#strip leading subject
+						$subject_line =~ s/^\s+//g;	#strip leading whitespace
+						$subject_line =~ s/\s$//g;	#strip trailing whitespace
+						$subject_line =~ s/\s/_/gi;	#Sub every whitespace for an underscore
+						chomp $subject_line;
+					close (BADMAIL);
+					if ($copy_rather_than_move == 1){
+						copy ($email_path, $bad_dir.$subject_line.".EML");
+					}elsif ($copy_rather_than_move == 2){
+						sleep 0;
+					}else{
+						move ($email_path, $bad_dir.$subject_line.".EML");
+					}
+				}
+			}
+		}
+	print "\n";
+	}
+
+
+
+## End of the scanning, now to do some reporting!
+
+## First, let's work out some stats with which to report.
+
+
+	$end=time();
+
+	# Since $all_count includes . and .., we just remove them.
+	$all_count = $all_count - 2;
+	if ($all_count < 0){
+		$all_count = 0;
+	}
+
+	# Since we use unix timestamps, $difference has an accuracy of 1. If it takes less than a second to scan, $difference is
+	# zero, and we can't divide by that. 
+	$difference = $end - $begin;
+	if ($difference < 1){
+		$difference = 1;
+	}
+	
+	$percent_good = ($good_count / $all_count ) * 100;
+	$percent_good = sprintf("%.2f", $percent_good);
+	
+	$percent_bad = ($bad_count / $all_count) * 100;
+	$percent_bad = sprintf("%.2f", $percent_bad);
+	
+	$mail_per_second = $all_count / $difference;
+	$mail_per_second = sprintf("%.2f", $mail_per_second);
+
+
+
+	# Send an email, if it's wanted:
+	unless ($send_report == 0){
+		open (REPORTMAIL, "|$sendmail") || die ("Error opening pipe to $sendmail for email report");
+			print REPORTMAIL "To: ".$reporting_to_addresses."\n";
+			print REPORTMAIL "From: ".$reporting_from_name."\n";
+			print REPORTMAIL "Subject: ".$location." spambot\n";
+			print REPORTMAIL "This is the spambot checking ".$location."\nIn:  \t".$all_count."\t\t".$in_dir."\nGood:\t".$good_count."\t\t".$good_dir."\nBad: \t".$bad_count."\t\t".$bad_dir."\nTime:\t".$difference."s\n\n".$percent_good."% Good mail\n".$mail_per_second." messages per second\n\n";
+			if ($good_count > 0){
+				print  REPORTMAIL  "Good emails:\n";
+				foreach (@good_list){
+					print  REPORTMAIL  "\t".$_."\n";
+				}
+			}
+			print REPORTMAIL "\n";
+		close (REPORTMAIL);
+	}
+
+	# write to log, if it's wanted:
+	unless ($write_log == 0){
+		open (LOGFILE, ">>$log_file") || die ("Error opening log file at $log_file for appending");
+			print LOGFILE $location."\t".$start_time."\t".$difference."s\tin:".$all_count."\tgood:".$good_count." (".$percent_good."%)\t".$mail_per_second." messages/s\n";
+		close (LOGFILE);
+	}
+
+	# write daily logfile:
+	
+	unless ($write_daily_log == 0){
+
+		@start_time = localtime($begin);
+			$hour = @start_time[2];
+			$min = @start_time[1];
+			$sec = @start_time[0];
+		$time = $hour.":".$min.":".$sec;
+
+		open (DAILY_LOG, ">>$daily_log_file") || die ("Error opening daily log file at $daily_log_file to append");
+			print DAILY_LOG $start_time."\t".$difference."s\tin:".$all_count."\tgood:".$good_count." (".$percent_good."%)\t".$mail_per_second." messages/s\n";
+		close (DAILY_LOG);
+	}
+#And, er, that's it.

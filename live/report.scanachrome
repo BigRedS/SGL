@@ -1,0 +1,51 @@
+#! /usr/bin/perl
+
+my ${dir} = "/mnt/scanachrome/reports/";
+my ${report_name} = "report.csv";
+my ${report_path} = ${dir}.${report_name};
+
+my ${linecount} = 0;
+my ${fieldcount} = 0;
+
+open (REPORT, ${report_path});
+	@{report} = <REPORT>;
+close (REPORT);
+
+print "Backup report for ", $ARGV[0];
+print "\n\n";
+$description = "";
+
+foreach (@{report}) {
+	if (${linecount} < 4 ) { 
+		sleep 0;
+	}else{
+		@fields = split /,/, $_;
+		@fields2 = split /"/, $_;
+
+#		if ($description == $fields2[1]) {
+#			print "\t\t", $fields2[3], "\n";
+#		} else {
+			$description = $fields2[1];
+			$start_time = $fields[5];
+			$status = $fields2[3];
+			$log_message = $fields2[3];
+	
+
+			if ( @{fields}[0] == "" ){
+				@{fields}[0] = @{fields}[2];
+			}
+			if ( @{fields}[8] == "" ){
+				@{fields}[8] = "None";
+			}
+		
+			print $description, " started at ", $start_time, "\n";
+			print "Status:\t\t", $status, "\n";
+			print "Log messages:\n";
+			print "\t\t", ${log_message}, "\n";
+#			print ${fields}[8], "\n";
+#			print "\t Time\t\t", ${fields}[9], "\n";
+			print "\n\n";
+#		}
+	}
+	${linecount}++
+}

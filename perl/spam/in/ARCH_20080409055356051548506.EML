@@ -1,0 +1,133 @@
+x-sender: <>
+x-receiver: peter.chuno@jupiterdisplay.com
+X-SCL: 8 94.83%
+Received: from mta.juntadeandalucia.es ([217.12.18.114]) by jup-svr09.SGL.GROUP with Microsoft SMTPSVC(6.0.3790.3959);
+	 Wed, 9 Apr 2008 06:53:56 +0100
+Received: from [10.240.225.254] (helo=buzon03)
+	by guadix5.juntadeandalucia.es with esmtp (Exim 4.60)
+	id 1JjSqg-0005U4-2W
+	for peter.chuno@jupiterdisplay.com; Wed, 09 Apr 2008 07:27:54 +0200
+Received: from Debian-exim by buzon03 with local (Exim 4.60)
+	id 1JjTG2-0007HY-Nu
+	for peter.chuno@jupiterdisplay.com; Wed, 09 Apr 2008 07:54:06 +0200
+X-Failed-Recipients: julia.cortes.campos.ext@juntadeandalucia.es
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@juntadeandalucia.es>
+To: peter.chuno@jupiterdisplay.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1JjTG2-0007HY-Nu@buzon03>
+Date: Wed, 09 Apr 2008 07:54:06 +0200
+Return-Path: <>
+X-OriginalArrivalTime: 09 Apr 2008 05:53:56.0343 (UTC) FILETIME=[1934C870:01C89A06]
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  julia.cortes.campos.ext@juntadeandalucia.es
+    mailbox is full: retry timeout exceeded
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <peter.chuno@jupiterdisplay.com>
+Received: from [10.240.229.16] (helo=mail.juntadeandalucia.es)
+	by buzon03 with esmtp (Exim 4.60)
+	(envelope-from <peter.chuno@jupiterdisplay.com>)
+	id 1JjTFz-0007Gq-QY
+	for julia.cortes.campos.ext@juntadeandalucia.es; Wed, 09 Apr 2008 07:54:06 +0200
+Received: from [58.8.92.7] (helo=ppp-58-8-92-7.revip2.asianet.co.th)
+	by mail.juntadeandalucia.es with esmtp (Exim 4.60)
+	(envelope-from <peter.chuno@jupiterdisplay.com>)
+	id 1JjTFn-0000Kl-QN
+	for julia.cortes.campos.ext@juntadeandalucia.es; Wed, 09 Apr 2008 07:54:02 +0200
+Subject: -SPAM- Watches with bling
+Message-ID: <000501c89a06$05be8a8f$8c70b0a9@usuql>
+From: "Omega Watches" <peter.chuno@jupiterdisplay.com>
+To: "Breitling Watches" <julia.cortes.campos.ext@juntadeandalucia.es>
+Subject: Watches with bling
+Date: Wed, 09 Apr 2008 04:06:22 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0002_01C89A06.05BB7F76"
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.3138
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+X-SA-Report: 
+	*  4.0 HELO_DYNAMIC_IPADDR Relay HELO'd using suspicious hostname (IP addr
+	*      1)
+	*  0.6 HTML_40_50 BODY: Message is 40% to 50% HTML
+	*  1.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.5 HTML_FONT_BIG BODY: HTML tag for a big font size
+X-Spam-Score: 13.4 (+++++++++++++)
+X-Spam-Status: Yes, score=13.4 required=4.1 tests=ALL_TRUSTED,HTML_40_50,HTML_FONT_BIG,HTML_MESSAGE,RCVD_IN_SORBS_DUL,RCVD_IN_XBL,URIBL_AB_SURBL,URIBL_JP_SURBL,URIBL_OB_SURBL,URIBL_SBL,URIBL_SC_SURBL,URIBL_WS_SURBL autolearn=no
+X-Spam-Report: 
+	* -0.2 ALL_TRUSTED Did not pass through any untrusted hosts
+	*  0.1 HTML_40_50 BODY: Message is 40% to 50% HTML
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.2 HTML_FONT_BIG BODY: HTML tag for a big font size
+	*  0.1 RCVD_IN_SORBS_DUL RBL: SORBS: sent directly from dynamic IP address
+	*      [58.8.92.7 listed in dnsbl.sorbs.net]
+	*  2.5 RCVD_IN_XBL RBL: Received via a relay in Spamhaus XBL
+	*      [58.8.92.7 listed in sbl-xbl.spamhaus.org]
+	*  0.6 URIBL_SBL Contains an URL listed in the SBL blocklist
+	*      [URIs: manninst.com]
+	*  2.0 URIBL_AB_SURBL Contains an URL listed in the AB SURBL blocklist
+	*      [URIs: manninst.com]
+	*  1.5 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
+	*      [URIs: manninst.com]
+	*  0.5 URIBL_WS_SURBL Contains an URL listed in the WS SURBL blocklist
+	*      [URIs: manninst.com]
+	*  2.0 URIBL_OB_SURBL Contains an URL listed in the OB SURBL blocklist
+	*      [URIs: manninst.com]
+	*  3.9 URIBL_SC_SURBL Contains an URL listed in the SC SURBL blocklist
+	*      [URIs: manninst.com]
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0002_01C89A06.05BB7F76
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Why would I want to buy a replica watch instead of a real one?
+The reason why replica watches are so popular is because=20
+you can look classy and professional, yet not have to spend=20
+tens of thousands of dollars doing it. These watches look identical=20
+to the ones you will find at the jewellery store selling for prices=20
+most people would not be able to afford. There is no reason=20
+why these beautiful watches should only be limited to the rich,=20
+but to everyone who wants to add a touch of class to their life style.
+Buy or browse replica watches here
+
+------=_NextPart_000_0002_01C89A06.05BB7F76
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2900.3199" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<p align=3D"left"><span class=3D"style3"><font size=3D"5"><strong>Why =
+would I want to buy a replica watch instead of a real =
+one?</strong></font></span></p>
+<p align=3D"left">The reason why replica watches are so popular is =
+because <br />you can look classy and professional, yet not have to =
+spend <br />tens of thousands of dollars doing it. These watches look =
+identical <br />to the ones you will find at the jewellery store selling =
+for prices <br />most people would not be able to afford. There is no =
+reason <br />why these beautiful watches should only be limited to the =
+rich, <br />but to everyone who wants to add a touch of class to their =
+life style.</p>
+<p align=3D"left"><a href=3D"http://manninst.com/"><font =
+size=3D"5"><strong>Buy or browse replica watches =
+here</strong></font></a></p></BODY></HTML>
+------=_NextPart_000_0002_01C89A06.05BB7F76--
+
+

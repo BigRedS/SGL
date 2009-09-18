@@ -1,0 +1,87 @@
+#! /usr/bin/perl
+
+## Handy script to check the sizes of people's PSTs and home directories.
+
+
+### PSTs
+my ${userdir}="/mnt/london/users";
+my ${max_file_size}=1.0 * 1024 * 1024; ## In KB!##
+my ${max_file_size_gb} = ${max_file_size} / (1024*1024);
+my ${pst_cmd} = 'find /mnt/london/users/ -name *.pst -printf \'%k %p \n\' | sort -nr';
+my @{filelist}=qx/${pst_cmd}/;
+
+
+print "\t PST File report \n\n";
+print "All PST files in ${userdir} greater than or equal to ${max_file_size_gb} GiB \n\n\n";
+
+foreach (@{filelist}){
+	chomp $_;
+	@line=split(/ /, $_);
+	@line2=split(/  /, $_);
+
+	${size} = @{line}[0];
+	${path} = @{line2}[0];
+#print ${path}, "\n";
+	${path} =~ s/^\d+//g;
+	${path} =~ s/\/mnt\/london\//\\\\10.0.7.1\\/g;
+	${path} =~ s/\//\\/g;
+
+	${firstname} = (split /\//, ${line}[1])[4];
+	${surname} = (split /\//, ${line}[2])[0];
+
+#	${firstname} =~ tr/^[a-z]/[A-Z]/;
+#	${surname} =~ tr/^[a-z]/[A-Z]/;
+
+
+	if ((length(${firstname}) + length(${surname})) < 11 ) {
+		${surname} = ${surname}."\t";
+	}
+
+
+	if ( ${size} > ${max_file_size}  ){
+		${size_gb} = ${size} / (1024 * 1024);
+		${size_gb} = sprintf "%.1f", "${size_gb}" ;
+		print ${firstname}, " ", ${surname}, "\t", ${size_gb}, " GiB \t", ${path}, "\n";
+	}
+
+}
+
+## UserDirs
+
+my ${max_dir_size} =2 * 1024; ## In KB! ##
+my ${dir_cmd} = 'du -s /mnt/london/users/* | sort -nr';
+
+my @{dirlist} = qx/${dir_cmd}/;
+
+print "\n\n\n\t User directory size report \n\n";
+print "\n Top fifteen biggest user dirs \n\n\n";
+
+my ${count} =1;
+
+	foreach (@{dirlist}) {
+		chomp $_;
+
+		print ${count}. "\t";
+
+		@{line} = split (/\ /, $_);
+		@{line2}=split (/\t/, ${line}[0]);
+		${size} = ${line2}[0];
+		${surname} = ${line}[1];
+
+		${path}=${line2}[1];
+		@{forename}=split( /\//, ${path});
+		${firstname}=${forename}[4];
+
+		if ((length(${firstname}) + length(${surname})) < 11 ) {
+			${surname} = ${surname}."\t";
+		}
+
+		${size_gb} = ${size} / (1024 * 1024);
+		${size_gb} = sprintf "%.1f", "${size_gb}" ;
+		print ${firstname}, " ", ${surname}, "\t", ${size_gb},  " GiB \n"; #{path}, " ", ${surname}, "\n";
+		${count}++;
+		if (${count} > 15){
+			last;
+		}
+}
+

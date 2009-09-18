@@ -1,0 +1,11 @@
+#! /bin/bash
+
+dir="/mnt/macshare/Avi/backups"
+
+for i in `ls /home/`;
+do
+	echo "tarring $i..."
+	tar -cf $dir/$i.`date +%y%m%d`.tar /home/$i
+done
+
+tar -cf $dir/www.`date +%y%m%d`.tar /var/www
