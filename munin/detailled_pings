@@ -1,0 +1,42 @@
+#! /usr/bin/perl
+
+my $log = "/home/avi/bin/munin/pings.d/pinglog";
+
+if ($ARGV[0] =~ /config/){
+
+	print <<EOF;
+graph_category network
+graph_title Very detailled ping times over VPN
+graph_vlabel Time (ms)
+EOF
+
+}
+
+
+
+
+open (FILE, "<$log");
+
+while (<FILE>){
+	my ($server,$min,$avg,$max)=(split(/ /, $_))[0,1,2,3];
+
+	if ($min =~ /^$/){
+		($min,$avg,$max)=0;
+	}		
+	$name = $server;
+	$server =~ s/-//;
+
+	
+	if ($ARGV[0] =~ /config/){
+		print $server."_min.label $name min\n";
+		print $server."_max.label $name max\n";
+		print $server."_avg.label $name avg\n";
+	}else{
+		print $server."_min.value $min\n";
+		print $server."_max.value $max\n";
+		print $server."_avg.value $avg\n";
+	}	
+
+}
+
+close (FILE);

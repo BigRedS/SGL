@@ -1,0 +1,9 @@
+History="~/.bash_history"
+BashHistory=`cat ~/.bash_history`
+echo "$BashHistory" | while read ThisCommand; do
+     # Replace spaces in each command line with __ [double underlines]
+     ThisCommand=${ThisCommand// /__}
+     # Concatenate the results to the Command variable
+     History="$History $ThisCommand"
+done
+echo "History - $History"

@@ -1,0 +1,42 @@
+#! /usr/bin/perl
+
+my $log = "/home/avi/bin/munin/pings.d/pinglog";
+
+if ($ARGV[0] =~ /config/){
+
+	print <<EOF;
+graph_category network
+graph_title Ping times over VPN
+graph_vlabel Time (ms)
+EOF
+
+}
+
+
+
+
+open (FILE, "<$log");
+
+while (<FILE>){
+	my ($server,$ping)=(split(/ /, $_))[0,2];
+	chomp $ping;
+
+	if ($ping =~ /^$/){
+		$ping=0;
+	}		
+	$name = $server;
+	$server =~ s/-//;
+
+	if ($ARGV[0] =~ /config/){
+		print $server.".label $name\n";
+	}else{
+		print $server.".value $ping\n";
+	}		
+
+}
+
+close (FILE);
+
+unless ($ARGV[0] =~ /config/){
+	unlink $log;
+}

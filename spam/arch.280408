@@ -1,0 +1,582 @@
+#! /bin/bash
+
+ver="0.7 1718 010408"
+
+# Having setup Postfix, added resubmit function. puts whole email (inc. headers) into
+#+a new email and sends it to relevant lists.
+# Or, rather, should...
+
+# This script is written for what is probably not a very common situation. It requires
+#+a *nix box which is running it to have mounted a network share of Exchange's Pickup and 
+#+spam directories. These are then passed to it as the 'good' and 'in' directories
+#+respectively. 
+# The script will then go through each file in the 'in' directory in turn, check it for
+#+each uncommented line that's in the whitelist, and move it accordingly. Files that 
+#+contain entries in the whitelist go into the 'good' directory, those that don't go 
+#+either into the bad directory, or a subdirectory of it, depending on configuration.
+
+# This might well work with other mail servers, though most seem to support whitelisting
+#+natively...
+
+# There are no wildcards, on the basis that a whitelisted sender can be effected 
+# by adding `@bbc.co.uk` to the whitelist, for example.
+
+# When splitting into dirs by date, the date is that of runtime, not of reciept of
+#+files. The thinking is that the script is to be run with some good degree of 
+#+regularity.
+
+                  
+################## CONFIGURATION ##################
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# All these values are overriden by any relevant switches #
+#		Unless otherwise indicated		  #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# This value is prepended to each of the 'in' 'good' 'bad' and 'whitelist variables
+#+to create their full path. It's handy for executing the same script on multiple 
+#+machines.
+commonpath=""
+
+# Names of/paths to the files and dirs
+# Should be relative to commonpath if commonpath has value
+whitelist=~/whitelist
+in=in
+good=good
+bad=bad
+
+# Log file
+# This is not prepended as above. If value is null, no logging at all, irrespective 
+#+of runtime switch.
+logfile=./.spamlog
+
+# Default editor for whitelist:
+# Put any arguments you want here, too.
+editor=vim
+
+## My Hostname and Username
+localhostname=`hostname`
+username=$(whoami)
+
+#For resubmission by email:
+#Subject line:
+subject=SGInfo_Contact_Form
+#File to look up where to send email that matches whitelist items
+addresses=/home/avi/bin/spam.addresses
+
+
+## For Email Reports:
+# There is _no_ error checking whatsoever with this.
+#to=avi.greenbury@servicegraphics.co.uk
+#from=spambot@it.sgl
+#subject="Spambot report"
+# Temp file for generating emails in:
+# Email is 'written' here through a series of appendectomies then deleted after its sent
+#email=/tmp/spamreporting
+
+
+#Switches and counts:
+let silent=0			# Unbreak the silent switch
+let head=0			# And the head switch
+let log=1			# Log by default
+let directories=1		# Split by default
+let num=30			# Default for -h switch
+let totalcount=0
+let badcount=0
+let goodcount=0
+let oddcount=0
+let options=0
+let cronjob=0
+
+################## CONFIGURATION ##################
+
+
+
+#################### FUNCTIONS ####################
+
+## usage hints for future usage:
+usage() (
+	echo "usage: spam [OPTIONS]"
+	echo "Version: ${ver}"
+	echo "Part of the 'hack-Exchange-into-a-mailserver' series. - Issue 1: Whitelisting"
+	echo "See the top of the script file itself for a brief outline of how this works and"
+	echo "how to break it using perfectly legal options"
+	echo " Options:"
+	echo "  -b [NAME]	Set name of 'bad' directory"	
+	echo "  -c [PATH]	New common path (n which to find 'in', 'good' and 'bad' dirs)"
+	echo "  -C		Run in cronjob mode - outputs logfile text to stdout, otherwise silent"
+	echo "  -d		Don't disperse 'bad' mail into date-named dirs"
+	echo "		Using this switch means that the 'undo' can work afterwards"
+	echo "  -e		Edit whitelist with default editor (${editor})"
+	echo "  -E [EDITOR]	Use EDITOR to do the above"
+	echo "  -f [PATH]	Add content of file at [PATH] to whitelist"
+	echo "  -g [NAME]	Set name of 'good' directory"	
+	echo "  -h		Show this 'help'"
+	echo "  -H [HOST]	Echo as run by HOST in log"
+	echo "  -i [NAME]	Set name of 'in' directory"
+	echo "  -l		Show whitelist and exit"
+	echo "  -L		Don't leave a log"
+	echo "  -n		Noisy (mention every file checked)"
+	echo "  -o		Show current defaults (options)"
+	echo "  -r		Send email report"
+	echo "  -s		Silent (no output) (also a bit quicker)"
+	echo "  -t		Only checks top ${num} lines of each email"
+	echo "  -T [NUM]	Only checks top NUM lines of each email"
+	echo "  -u		Undo (copy contents of 'bad' and 'good' to 'in')"
+	echo "  -v		Output version info"
+	echo "		Doesn't work unless -d was used"
+	echo "  -w XXX	Add 'XXX' to whitelist (probably not a good idea)"
+	echo "  -W [FILE]	Use [FILE] as whitelist"
+	echo 
+	echo " Current defaults:"
+	echo "  Common path:		${commonpath}/"
+	echo "  Pickup directory	${in}/"
+	echo "  Good mail directory	${good}/"
+	echo "  Bad mail directory	${bad}/"
+	echo "  Whitelist name: 	${whitelist}"
+	echo "  Whitelist editor: 	${editor}"
+	echo 
+	echo "Bugs, features, loneliness:"
+	echo "god""@""lordandmaker"".co.uk"
+	exit 0	
+)
+
+header() (
+	echo
+	echo "********************************************************"
+	echo "**           Spamtastic Spam Sorting Script!          **"
+	echo "**               god@lordandmaker.co.uk               **"
+	echo "** Part of the hack-exchange-into-a-mailserver series **"
+	echo "**               Issue 1 - Whitelisting               **" 
+	echo "********************************************************"
+	echo 
+)
+
+showwhitelist() (
+	if [ ! -e ${whitelist} ]; then
+		echo "Ooopsie!"
+		echo "Couldn't find a whitelist at ${whitelist}"
+		exit 0
+	fi
+	lines=$(cat ${whitelist} | wc -l)
+	let lines=lines-10
+	tail -n${lines} ${whitelist}
+)
+
+# Add a text string to a whitelist.
+# First, grep the whitelist for the appearence of the string. If the string's 
+#+already in there, say so. If it's not, add it and say so.
+
+addstringwhitelist() (
+	number=$(cat ${whitelist} | grep -i $1 | grep -v ^# | wc -l)
+	if [ "${number}" == "0" ]; then
+		echo $1 >> ${whitelist}
+
+	if [ "${silent}" == "0" ]; then
+		echo "Added '$1' to whitelist"
+	fi
+
+	else
+		echo "$1 is already in the whitelist"
+	fi
+exit 0
+)
+
+# Function to add a file to the whitelist
+# One day, this'll be more intelligent, and avoid duplicates.
+
+addfilewhitelist() (
+	cat $1 >> ${whitelist}
+)
+
+# Resubmit the email
+# Uses dictionary at $addresses to work out where the file needs sending.
+resubmit() {
+	file=$1
+	white=$2
+	addresses=$3
+
+	echo "file = $1"
+	echo "white = $2"
+#	echo "addresses = $addresses"
+
+	# If we're resubmitting it because it matched 'sgcontactforms' change the value of ${white} to get the right resubmit address
+	if [ "${white}" == "sgcontactforms" ]; then
+		echo "white = ${white}"
+		for i in info@scanachrome.com info@jupiterdisplay.com info@servicegraphics.co.uk info.notts@servicegraphics.co.uk info.salisbury@servicegraphics.co.uk info@service-exhibitions.com info.serviceprint@servcegraphics.co.uk info.wales@servicegraphics.co.uk info.wandsworth@servicegraphics.co.uk sgcontactforms
+		do
+			wc=$(grep -i ${i} ${file} | wc -l)
+			if [ "${wc}" -gt "0" ]; then
+				white=$i
+				break
+			fi
+		done
+	fi
+
+	address=$( cat $addresses | grep $white | awk -F% '{ print $2 }' )
+
+	for i in ${address} 
+	do
+#		echo $i
+		mail -s "$subject" $i < ${file}
+		echo "  mail -s "$subject" $1 < ${file}"
+	done
+
+}
+
+
+#write a log
+writetolog() (
+#	if [ "${log}" != "" ]; then
+#		if [ ! -e ${log} ]; then
+#			touch ${log}
+#		fi
+		echo " ${starttime} - ${endtime} : ${goodcount} good,	${badcount}	bad	total:	${totalcount}		: ${in}	${1}@$localhostname	${remotehost}"
+#	fi
+)
+
+
+# Check for the existence of neccesary files.
+checkfiles()(
+	if [ ! -d ${in} ]; then
+		if [ ! -d ${commonpath}/${in} ]; then
+			echo "Ooopsie!"
+			echo "Couldnt find ${in} to use as 'in' dir"
+			exit 1
+		fi
+	fi
+	if [ ! -d ${good} ]; then
+		if [ ! -d ${commonpath}/${good} ]; then
+			echo "Ooopsie!"
+			echo "Couldnt find ${good} to use as 'good' dir"
+			exit 1
+		fi
+	fi
+	if [ ! -d ${bad} ]; then
+		echo "Ooopsie!"
+		echo "Couldnt find ${bad} to use as 'bad' dir"
+		exit 1
+	fi
+	if [ ! -e ${whitelist} ]; then
+		echo "Ooopsie!"
+		echo "Couldnt find a whitelist at ${whitelist}"
+		exit 1
+	fi
+
+	if [ "${silent}" == "0" ]; then
+		header
+	fi
+)
+
+
+# Put everything back in 'in' directory.
+# Since the arguments list is sometimes astronomical (>3000 items), mv * is rarely 
+#+a safe bet. 
+redo() (
+	in=${commonpath}/${in}
+	good=${commonpath}/${good}
+	bad=${commonpath}/${bad}
+
+	if [ "${silent}" == "0" ]; then
+		echo "Moving files from ${bad} to ${in}..."
+	fi
+	let count=0
+	for i in `ls ${bad}`
+	do
+		let count=${count}+1
+		mv ${bad}/$i ${in}
+
+		if [ "${noisy}" == "1" ]; then
+			echo "Moving $i... done"
+		fi
+	done
+	if [ "${silent}" == "0" ]; then
+		echo "All done. Moved ${count} files."
+		echo
+		echo "Moving files from ${good} to ${in}..."
+	fi
+	let count=0
+	for i in `ls ${good}`
+	do
+		let count=${count}+1
+		mv ${good}/$i ${in}
+		
+		if [ "${noisy}" == "1" ]; then
+			echo "Moving $i... done"
+		fi
+	done
+	if [ "${silent}" == "0" ]; then
+		echo "All done. Moved ${count} files."
+	fi
+	exit 0;
+
+)
+
+# Create directories named with todays date (YYMMDD to make alphabetical sorting 
+#+sensible). For when dispersion is on.
+directories() (
+
+
+	date=$(date +%y%m%d)
+	bad=${commonpath}/$1
+
+	#echo ${bad}
+
+	if [ ! -d ${bad}/${date} ]; then
+	#	echo ${bad}
+		mkdir ${bad}/${date}
+	fi
+	
+	bad=${bad}/${date}
+
+	echo ${bad}
+)
+
+
+showdefaults() (
+	echo "Checking files in ${in}"
+	echo "Moving bad files to ${bad}"
+	echo "Moving good files to ${good}"
+	echo
+)
+
+# Compose an email
+#email () (
+#	touch ${email}
+#
+#	echo "To: ${to}" >> ${email}
+#	echo "From: ${from}" >> ${email}
+#	echo "Subject: ${subject}" >> ${email}
+#	echo "Report from Avis Spamtastic Spam Sorting Script:" >> ${email}
+#	echo "Started proccessing at 	${starttime}" >> ${email}
+#	echo "Finished at 		${endtime}" >> ${email}
+#	echo "" >> ${email}
+#	echo "Processed ${totalcount}:" >> ${email}
+#	echo "  ${badcount} bad emails" >> ${email}
+#	echo "  ${goodcount} good emails" >> ${email}
+#	echo ""	>> ${email}
+#	echo "" >> ${email}
+#
+#	mv ${email} ${good}
+#)
+
+
+#################### FUNCTIONS ####################
+
+
+################## INITIALISATION #################
+
+#Create full whitelist path now, so it works with options
+whitelist=${commonpath}/${whitelist}
+
+# Getopts statement
+while getopts "b:Cc:deE:f:g:hH:i:LlnorstT:uvw:W:" option
+do
+	case ${option} in
+		h) usage; exit 0;;
+		c) commonpath=${OPTARG};;
+		C) let cronjob=1; let silent=1;;
+		d) let directories=0;;
+		L) let log=0;;
+		b) bad=${OPTARG};;
+		g) good=${OPTARG};;
+		H) remotehost=${OPTARG};;
+		i) in=${OPTARG};;
+		E) ${OPTARG} ${whitelist}; exit 0;;
+		e) ${editor} ${whitelist}; exit 0;;
+		f) addfilewhitelist ${OPTARG}; exit 0;;
+		l) showwhitelist; exit 0;;
+		n) let noisy=1;;
+		o) let options=1;;
+		r) let report=1;;
+		s) let silent=1;;
+		u) redo; exit 0;;
+		t) let head=1;;
+		T) let head=1; let num=${OPTARG};;
+		v) echo $ver; exit 0;;
+		w) addstringwhitelist ${OPTARG}; exit 0;;
+		W) whitelist=${OPTARG};;
+		*) usage; exit 0;;
+	esac		
+done	
+
+# Amalgamate some variables, now they have been altered with switches and 
+#+functions
+in=${commonpath}/${in}
+good=${commonpath}/${good}
+
+# Simple or complex bad mail handling?
+# If -d switch used, all bad mail goes into a single dir. If not, it gets date-separated
+
+if [ "${directories}" -eq "0" ]; then
+	bad=${commonpath}/${bad}
+else
+	input=${bad}
+	bad=`directories ${input}`
+	#echo ${bad}
+fi
+
+if [ "${options}" -eq "1" ]; then
+	showdefaults
+	exit 0
+fi
+
+# Check neccesary files and directories exist. Scream if they dont
+checkfiles
+# If checkfiles failed (i.e. exit status !=0 ) then exit the script.
+# checkfiles does its own error message.
+if [ $? != "0" ]; then
+	exit 1
+fi
+
+if [ "${silent}" != "" ]; then
+	if [ "${cronjob}" != "1" ]; then
+		showdefaults
+		echo "Working..."
+		echo 
+	fi
+fi
+
+
+totalfiles=$(ls ${in} | wc -l)
+
+################## INITIALISATION #################
+
+####################### WORK ######################
+
+starttime=$(date)
+
+# This takes ages (>20s) normally, and all it does is provide a denominator
+#+for the progress indicators. So it's only done if noisy is set.
+if [ "${silent}" != "1" ]; then
+	totalfiles=$(ls ${in} | wc -l)
+fi
+
+#For each file in the in directory....
+for i in `ls ${in}`
+do
+	file=$i
+
+	# if the filename ends in .EML and is only one line long
+	if [ "`echo ${file} | grep -i .EML$ | wc -l`" -gt 0 ]; then
+
+		let totalcount=${totalcount}+1
+
+
+		# For each line in the whitelist...
+		for i in `cat ${whitelist} | grep -i -v ^#`
+		do
+			white=$i
+
+			# If the head switch is set to 1, only parse the top of the
+			#+file.
+			# Then grep it for the current white item 
+			if [ "${head}" = "1" ]; then
+				result=$(cat ${in}/${file} | head -n${num} | grep -i ${white} | wc -l)
+			else
+				result=$(cat ${in}/${file} | grep -i ${white} | wc -l)
+			fi
+
+
+		
+			if [ ${result} -gt "0" ]; then
+				state="good"
+				white=$white
+				break
+			else
+				state="bad"
+			fi
+		done
+
+		# Calculate the percentage processed so far
+		result=$(echo "scale=2; (${totalcount}/${totalfiles})*100" | bc | awk -F. '{ print $1 }')
+
+		# Move some files, and keep count of what we've done
+		if [ "${state}" = "bad" ]; then
+			mv ${in}/${file} ${bad}/${file} 2> /dev/null
+			let badcount=${badcount}+1
+		elif [ "${state}" = "good" ]; then
+#			echo "removing X-SCL"
+#				cat ${in}/${file} | grep -v X-SCL > ${in}/${file}
+#			echo "moving"
+#			wait
+#				cp ${in}/${file} ${good}/${file} 
+#			wait
+##				rm ${in}/${file}
+#			echo "moved"
+			wait
+#			echo "resubmitting"
+				resubmit ${in}/${file} ${white} ${addresses}
+#			echo "Sent."
+#			wait
+				
+#				mv ${file} ${good}/`date +%y%m%d`
+#			echo "moved."
+				let goodcount=${goodcount}+1
+		else
+			mv ${in}/${file} ${in}/${file}.odd
+			let oddcount=${oddcount}+1
+		fi
+
+		# Show what were doing:
+		if [ "${noisy}" == "1" ]; then
+			echo "${totalcount} of ${totalfiles}: ${result} % :  Checking ${file} ... ${state} [${goodcount} good so far]"
+		elif [ "${silent}" == "0" ]; then
+			if [ "${state}" == "good" ]; then
+				echo "Good file: ${file} [${goodcount} good so far, ${totalcount} checked]" 
+			fi
+		fi
+
+	fi
+done
+#echo "syncing"
+sync
+#sleep 10
+#sync
+wait
+#echo "copying"
+dirname=$(date +%y%m%d%H%m)
+mkdir ${good}/${dirname}
+cp -r ${in}/* ${good}/${dirname}
+#echo "copied"
+wait
+sync
+wait
+rm -r ${in}/*
+endtime=$(date)
+
+####################### WORK ######################
+
+#################### REPORTING ####################
+
+# Final results!
+
+if [ "${silent}" != "1" ]; then
+	echo "Processed ${totalcount}:"
+	echo "  ${badcount} bad emails"
+	echo "  ${goodcount} good emails"
+	if [ "${oddcount}" -gt "1" ]; then
+		echo "  ${oddcount} emails i didnt know what to do with"
+	else
+		echo 
+	fi
+fi
+
+#if [ "${report}" == "1" ]; then	
+#	email
+#fi
+
+if [ "${log}" = "1" ]; then
+	if [ "${cronjob}" != "1" ]; then
+writetolog $username>> $logfile
+	else
+		echo "`writetolog cron`"
+	fi
+fi
+
+#################### REPORTING ####################
+
+
+exit 0
+exit 0
