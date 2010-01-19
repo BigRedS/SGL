@@ -18,6 +18,7 @@ use strict;
 ##
 
 my $output_file = './out.csv';
+
 my $error_file = "./errors.txt";
 my @error_array = ();
 
