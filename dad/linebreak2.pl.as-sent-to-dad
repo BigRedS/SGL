@@ -61,7 +61,7 @@ open INPUT_FILE , "< $input_file" || die ("Error opening input file at $input_fi
 foreach (<INPUT_FILE>){
 	my $line = $_;
 	## If the line begins with two or more decimal digits, it's probably one of those funny bungay ones
-	if ($line =~ /^\d{2}/){
+	if ($line =~ /^\d{1,3}/){
 		my $line_number = (split /,/, $_)[0];
 		$line_number--;
 		## If the line we want to write to is non-empty (i.e. it has digits in it), then error
@@ -100,6 +100,13 @@ foreach (<INPUT_FILE>){
 
 }	
 close INPUT_FILE;
+
+print "DEBUG\n\n";
+my $i;
+for ($i=0; $i<20; $i++){
+	print $i." = ".$output_array[$i]."\n";
+}
+
 
 #print "\n\t\t".@output_array."\n";
 
