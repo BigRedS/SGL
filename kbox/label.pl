@@ -5,7 +5,7 @@ use 5.010;
 use DBI;
 print "content-type:text/html\n\n\n";
 
-$dbh = DBI->connect('dbi:mysql:ORG16;host=kbox.st-ives.int', 'R16', 's3rv1c3?') or die "Couldn't connect to db";
+$dbh = DBI->connect('dbi:mysql:ORG16;host=kbox.st-ives.int', 'R16', 'XXXXXXXXXXXXX') or die "Couldn't connect to db";
 $sql = "select software_id from SOFTWARE_LABEL_JT where label_id = '52'";
 $sth = $dbh->prepare($sql);
 
