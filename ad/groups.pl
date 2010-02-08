@@ -16,8 +16,6 @@ while(<F>){
 }
 close F;
 
-
-
 my $ad = Net::LDAP->new("ldap://$config{'server'}") or die("Could not connect to LDAP server..");
 $ad->bind($config{'user'},$config{'password'});
 
@@ -33,7 +31,6 @@ my $results = $ad->search(base=>$searchbase,filter=>$filter,attrs=>$attrs);
 my $count = $results->count;
 
 print "$count";
-
 
 
 $ad->unbind();
