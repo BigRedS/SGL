@@ -40,32 +40,3 @@ where ( 1 not
 group by MACHINE.ID
 order by MACHINE.NAME ASC
 limit 0 , 30
-
-
-====
-select 	MACHINE.NAME as SYSTEM_NAME, 
-	USER_FULLNAME, 
-	SOFTWARE.DISPLAY_NAME as SOFTWARE_DISPLAY_NAME 
-
-FROM (
-	(
-	MACHINE	left join MACHINE_SOFTWARE_JT on 
-		MACHINE_SOFTWARE_JT.MACHINE_ID = MACHINE.ID
-	)
-
-	left join SOFTWARE on 
-		SOFTWARE.ID = MACHINE_SOFTWARE_JT.SOFTWARE_ID 
-
-	)
-WHERE   
-	(1 not in (
-		(select 1 
-			from SOFTWARE, MACHINE_SOFTWARE_JT 
-			where MACHINE_SOFTWARE_JT.MACHINE_ID = MACHINE.ID 
-			and SOFTWARE.ID = MACHINE_SOFTWARE_JT.SOFTWARE_ID 
-			and SOFTWARE.DISPLAY_NAME rlike 'Microsoft Office[ ]*[a-z]*[ ]2007'
-		)
-	)
-  
-group by MACHINE.ID 
-order by MACHINE.NAME asc
