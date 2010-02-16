@@ -1,3 +1,12 @@
+-- SQL behind the per-seat report --
+
+/*
+Joins S_L_JT with SOFTWARE, and then that with M_S_JT. We know the ID 
+(52) of the interesting label (per-seat) to avoid looking up on LABEL. 
+*/
+
+
+
 select SOFTWARE.DISPLAY_NAME, count(*)
  
 from (
