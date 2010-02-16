@@ -11,7 +11,7 @@ kbox output pretty. This isn't implemented yet, since I've not configured
 the labels on the kbox.
 */
 
-select MACHINE.NAME, SOFTWARE.DISPLAY_NAME, LABEL.DISPLAY_NAME
+select MACHINE.NAME, SOFTWARE.DISPLAY_NAME, LABEL.NAME
 
 from (
 	
