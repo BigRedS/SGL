@@ -1,0 +1,11 @@
+Here's where I keep stuff I've written that pertains to the KBox.
+
+Currently it's mostly SQL for reports. The name of the script is 
+approximately the same as the report it's used in. It's all c+p'd 
+from PHPMyAdmin (where I test them) into here and the KBox. There's 
+no automated jiggery pokery going on at the minute.
+
+label.pl was the stand-in until I got the SQL done for per-seat.sql
+
+dumps.pl is my magical SQL dump exporter script which I wrote for
+this, but isn't really kbox related.
