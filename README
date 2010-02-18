@@ -3,17 +3,17 @@ really - any semblance is incidental.
 
 Actually, that's a bit of a lie. Some clues by dirnames:
 
-ad	Abortive attempt at automating reports on the contents of our AD. Isn't 
-	entirely neccesary and I have other stuff on.
-dad	Stuff I wrote for my dad. currently just BT Meridian report munging
-dell	Dell warranty status getter. Maybe due for expansion.
-kbox	KBox related stuff. Here be SQL
-live	Stuff that's in cron jobs and shouldn't be touched.
-munin	Munin monitoring scripts
-namechanger	batch file renamer
-spam	Early drafts of my exchange-spam-archive-sorting script. Real stuff's
+ad. . . Abortive attempt at automating reports on the contents of our AD. Isn't 
+. . . .  entirely neccesary and I have other stuff on.
+dad . . Stuff I wrote for my dad. currently just BT Meridian report munging
+dell. . Dell warranty status getter. Maybe due for expansion.
+kbox. . KBox related stuff. Here be SQL
+live. . Stuff that's in cron jobs and shouldn't be touched.
+munin . Munin monitoring scripts
+namechanger . . batch file renamer
+spam. . Early drafts of my exchange-spam-archive-sorting script. Real stuff's
 	under ./live/spam2
-wiki	on-off attempt at a wiki extension for showing ArcServe reports
+wiki. . on-off attempt at a wiki extension for showing ArcServe reports
 
 
 Some of this works, some of it doesn't, occasionally it's maintained. If you're bored
