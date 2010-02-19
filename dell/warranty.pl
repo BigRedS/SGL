@@ -10,6 +10,9 @@ my $service_tag = $ARGV[0];
 
 use LWP::Simple;
 use HTML::TableExtract; # Is in the CPAN, and exists in the debian repositories as libhtml-tableextract-perl
+use XML::RSSLite;
+
+
 
 ## Make a URL:
 my $url_base = "http://support.euro.dell.com/support/topics/topic.aspx/emea/shared/support/my_systems_info/en/details";
@@ -34,10 +37,16 @@ print "\n";
 
 ## Drivers:
 
+
+## Drivers:
+say "DRIVERS";
 ## Make a url:
 $url_base = "http://support.euro.dell.com/support/downloads/driverslist.aspx";
 $url_params = "?c=uk&l=en&s=gen&catid=-1&dateid=-1&formatid=Hard-Drive&hidlang=en&hidos=WW1&impid=-1&os=WW1&osl=EN&scanConsent=False&scanSupported=False&TabIndex=&typeid=DRVR";
-$url=$url_base.$url_params."&servicetag=".$service_taglge = split(/\n/, $content);
+$url=$url_base.$url_params."&servicetag=".$service_tag;
+
+my $content = get($url);
+my @page = split(/\n/, $content);
 @page = grep(/SystemID/i, @page);
 
 if ($page[@page-1] =~ /&SystemID=(\w+)&/){
@@ -49,7 +58,7 @@ if ($page[@page-1] =~ /&SystemID=(\w+)&/){
 	my $content = get($url);
 	my %result;
 	parseRSS(\%result, \$content);
-	foreach my $item(@{result{'item'}}){
+	foreach my $item(${result{'item'}}){
 		say "<h3>$item->{'title'}</h3>";
 	}
 
