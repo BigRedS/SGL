@@ -58,10 +58,8 @@ if ($page[@page-1] =~ /&SystemID=(\w+)&/){
 	my $content = get($url);
 	my %result;
 	parseRSS(\%result, \$content);
-	foreach my $item(${result{'item'}}){
-		say "<h3>$item->{'title'}</h3>";
+	foreach my $item (@{$result{'item'}}) {
+		say "<a href='$item->{'link'}'>$item->{'description'}</a><br />";
 	}
-
-
 }
 
