@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use 5.010;
 
 die "$0\n\tGet warranty info from dell.\nUsage\n$0 [SERVICE TAG]\n" if !$ARGV[0];
 
@@ -14,16 +15,39 @@ use HTML::TableExtract; # Is in the CPAN, and exists in the debian repositories 
 my $url_base = "http://support.euro.dell.com/support/topics/topic.aspx/emea/shared/support/my_systems_info/en/details";
 my $url_params = "?c=uk&cs=ukbsdt1&l=en&s=gen";
 my $url = $url_base.$url_params."&servicetag=".$service_tag;
-my $content = get($url);
+#my $content = get($url);
 
 # Tell HTML::TableExtract to pick out the table(s) whose class is 'contract_table':
-my $table = HTML::TableExtract->new( attribs => { class => "contract_table" } );
-$table->parse($content);
+#my $table = HTML::TableExtract->new( attribs => { class => "contract_table" } );
+#$table->parse($content);
 
-## Gimme infos!
-foreach my $ts ($table->tables) {
-	foreach my $row ($ts->rows) {
-		print "", join("\t", @$row), "\n";
-	}
+#rint $url;
+print "\n";
+
+### Gimme infos!
+#foreach my $ts ($table->tables) {
+#	foreach my $row ($ts->rows) {
+#		print "", join("\t", @$row), "\n";
+#	}
+#}
+
+
+## Drivers:
+
+## Make a url:
+$url_base = "http://support.euro.dell.com/support/downloads/driverslist.aspx";
+$url_params = "?c=uk&l=en&s=gen&catid=-1&dateid=-1&formatid=Hard-Drive&hidlang=en&hidos=WW1&impid=-1&os=WW1&osl=EN&scanConsent=False&scanSupported=False&TabIndex=&typeid=DRVR";
+$url=$url_base.$url_params."&servicetag=".$service_tag;
+
+my $content = get($url);
+my @page = split(/\n/, $content);
+@page = grep(/SystemID/i, @page);
+
+if ($page[@page-1] =~ /&SystemID=(\w+)&/){
+	my $system_id = $1;
 }
+
+
+
+
 
