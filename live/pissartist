@@ -22,7 +22,7 @@ foreach (@filelist){
 	$size = @line[0];
 	$path = @line2[0];
 	$path =~ s/^\d+//g;
-	$path =~ s/\/mnt\/london\//\\\\10.0.7.1\\/g;
+	$path =~ s/\/mnt\/london\//\\\\jup-svr02\\/g;
 	$path =~ s/\//\\/g;
 
 	$firstname = (split /\//, $line[1])[4];
