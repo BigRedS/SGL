@@ -1,0 +1,1 @@
+cacls c:/jbwv2 /E /G "domain users@sgl:F"
